@@ -56,7 +56,6 @@ void
 set_buf_mode (buffer * buf, char *reqname)
 {
     DIR *dir;
-    char name[PATH_MAX];
     char *pathpos, *nextcolon;
     void *handle = NULL;
     int found;
@@ -86,40 +85,53 @@ set_buf_mode (buffer * buf, char *reqname)
 
     do
     {
-	char *basename;
+        char *name = NULL;
 	struct dirent *ent;
 
 	if (*pathpos == '~')
 	{
 	    char *home = getenv ("HOME");
 
-	    strcpy (name, (home == NULL) ? "/" : home);
+            if (home == NULL)
+                name = strdup("/");
+            else
+                name = strdup(home);
 	    pathpos++;
 	} else
-	    name[0] = '\0';
+	    name = strdup("");
 
 	nextcolon = strchr (pathpos, ':');
 
 	if (nextcolon != NULL)
 	{
+	    int len = (nextcolon - pathpos) + strlen(name) + 2 + 8;
+	    name = realloc(name, len);
 	    strncat (name, pathpos, nextcolon - pathpos);
-	    pathpos += nextcolon - pathpos + 1;
-	} else
-	    strcpy (name, pathpos);
-
-	basename = name + strlen (name);
-	if (*(basename - 1) != '/')
+	    name[len-2-8] = '\0';
+	    pathpos += (nextcolon - pathpos) + 1;
+	}
+	else
 	{
-	    *(basename++) = '/';
-	    *basename = '\0';
+	    int len = strlen(pathpos) + strlen(name) + 2 + 8;
+	    name = realloc(name, len);
+	    strcat (name, pathpos);
+	}
+
+	if (name[strlen(name)-1] != '/')
+	{
+            int pos = strlen(name);
+            name[pos++] = '/';
+            name[pos] = '\0';
 	}
 
 	if (reqname != NULL)
 	{
 	    struct stat st;
 
-	    strcpy (basename, reqname);
-	    strcat (basename, ".so");
+            name = realloc(name, strlen(name) + strlen(reqname) + 3 + 1);
+	    strcat (name, reqname);
+	    strcat (name, ".so");
+
 	    stat (name, &st);
 
 	    if (S_ISREG (st.st_mode))
@@ -129,17 +141,27 @@ set_buf_mode (buffer * buf, char *reqname)
 		    found = 1;
 	    }
 
-	} else
+	}
+	else
 	{
 	    dir = opendir (name);
 	    if (dir == NULL)
 		continue;
+
+            int basename_len = 0;
+            int basename_off = strlen(name);
+            char *basename = name + basename_off;
 
 	    while ((!found) && ((ent = readdir (dir)) != NULL))
 	    {
 		struct stat st;
 		int (*accept) (buffer *);
 
+                if (strlen(ent->d_name) > basename_len) {
+                    basename_len = strlen(ent->d_name);
+                    name = realloc(name, (basename-name) + basename_len + 1);
+                    basename = name + basename_off;
+                }
 		strcpy (basename, ent->d_name);
 		stat (name, &st);
 
@@ -161,6 +183,8 @@ set_buf_mode (buffer * buf, char *reqname)
 	    }
 	    closedir (dir);
 	}
+
+	free(name);
     }
     while ((!found) && (nextcolon != NULL));
 
@@ -482,8 +506,7 @@ open_buffer (buffer * buf, char *fname, char *modename)
 
     if (fname != NULL)
     {
-        buf->fname = calloc(100, sizeof(char));
-        strcpy(buf->fname, fname);
+        buf->fname = strdup(fname);
         buf->name = strrchr (buf->fname, '/');
         if (buf->name == NULL)
 	    buf->name = buf->fname;

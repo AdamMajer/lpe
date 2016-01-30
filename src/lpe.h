@@ -11,17 +11,6 @@
 
 #include "i18n.h"
 
-/*
- * This is bad. very bad. but I need PATH_MAX for -pedantic -ansi.
- * It is defined in linux/limits.h, but that's Linux only, and I
- * don't have access to other systems, so can't detect it in
- * configure...
- *  - Gergely Nagy
- */
-#ifndef PATH_MAX
-#define PATH_MAX 255
-#endif
-
 /* Flag to quit the application */
 extern int quit;
 

@@ -135,7 +135,6 @@ mbuf_modes_avail (char ***modes)
     struct dirent *de;
 
     char **am;
-    char pn[PATH_MAX];
     char *path, *nc, *mn;
 
     int nl;
@@ -155,24 +154,35 @@ mbuf_modes_avail (char ***modes)
 
     do
     {
+        char *pn = NULL;
+
 	if (*path == '~')
 	{
 	    char *home = getenv ("HOME");
-	    strcpy (pn, (home != NULL ? home : "/"));
+	    if (home != NULL)
+	        pn = strdup(home);
+	    else
+	        pn = strdup("/");
 	    path++;
-	} else
+	}
+	else
 	{
-	    *pn = '\0';
+	    pn = strdup("");
 	}
 
 	nc = strchr (path, ':');
 
 	if (nc != NULL)
 	{
+	    int len = (nc - path) + strlen(pn) + 1;
+	    pn = realloc(pn, len);
 	    strncat (pn, path, nc - path);
+	    pn[len-1] = 0;
 	    path += nc - path + 1;
 	} else
 	{
+	    int len = strlen(path) + strlen(pn) + 1;
+	    pn = realloc(pn, len);
 	    strcat (pn, path);
 	}
 
@@ -206,6 +216,8 @@ mbuf_modes_avail (char ***modes)
 	    }
 	    closedir (dir);
 	}
+
+	free (pn);
     }
     while (nc != 0);
 
