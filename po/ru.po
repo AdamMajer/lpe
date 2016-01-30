@@ -1,0 +1,216 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2001-06-20 12:19+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+
+#. This is just as much an overflow as running out of keys
+#: src/input.c:105 src/input.c:2348
+msgid "Macro overflow"
+msgstr "Слишком много макросов"
+
+#: src/input.c:889 src/input.c:955 src/input.c:1056 src/input.c:1268
+msgid "file: "
+msgstr "имя файла: "
+
+#: src/input.c:903 src/input.c:926
+msgid "File saved successfully"
+msgstr "Файл успешно сохранен"
+
+#: src/input.c:946
+msgid "Current buffer modified"
+msgstr "Текущий буфер содержит изменения"
+
+#: src/input.c:1134
+msgid "search term: "
+msgstr "искать строку: "
+
+#: src/input.c:1172
+msgid "Found"
+msgstr "Строка найдена"
+
+#: src/input.c:1182
+msgid "Not found"
+msgstr "Строка не найдена"
+
+#: src/input.c:1198
+msgid "line: "
+msgstr "номер строки: "
+
+#: src/input.c:1442
+msgid "Using soft tabs"
+msgstr "Используется мягкий символ табуляции"
+
+#: src/input.c:1446
+msgid "Using hard tabs"
+msgstr "Используется жесткий символ табуляции"
+
+#: src/input.c:1518
+msgid "Mismatched braces"
+msgstr "Скобки не совпадают"
+
+#: src/input.c:1560
+msgid "Autoindent off"
+msgstr "Автоотступ выключен"
+
+#: src/input.c:1564
+msgid "Autoindent on"
+msgstr "Автоотступ включен"
+
+#: src/input.c:1574
+msgid "count: "
+msgstr ""
+
+#: src/input.c:1608
+msgid "Macro recorder off"
+msgstr "Запись макроса остановлена"
+
+#: src/input.c:1614
+msgid "Macro recorder on"
+msgstr "Запись макроса начата"
+
+#: src/input.c:1648
+msgid "mode: "
+msgstr "режим:"
+
+#: src/input.c:1804 src/input.c:1950
+msgid "shell: "
+msgstr "команда шелла:"
+
+#: src/input.c:1814 src/input.c:1854 src/input.c:1895 src/input.c:1960
+#: src/input.c:2049 src/input.c:2138
+msgid "Command failed"
+msgstr "Команда не выполнена"
+
+#: src/input.c:1844 src/input.c:2039
+msgid "awk: "
+msgstr ""
+
+#: src/input.c:1885 src/input.c:2128
+msgid "sed: "
+msgstr ""
+
+#: src/input.c:2231
+msgid "debug: "
+msgstr "команда: "
+
+#: src/input.c:2246
+msgid "Unknown debug request"
+msgstr "Неизвестная отладочная команда"
+
+#: src/input.c:2258
+#, fuzzy
+msgid "command: "
+msgstr "Команда не выполнена"
+
+#: src/lpe.c:108
+#, c-format
+msgid "%s version %s\n"
+msgstr "%s Версия %s\n"
+
+#: src/lpe.c:116
+msgid ""
+"The lpe text editor is dedicated to all those who died at\n"
+"Columbine High School in Littleton, CO, USA on April 20, 1999.\n"
+"We will always remember you.\n"
+msgstr ""
+
+#: src/lpe.c:131
+#, c-format
+msgid "error in option: %s\n"
+msgstr "неверно указана опция: %s\n"
+
+#: src/lpe.c:134
+msgid ""
+"usage:\t'lpe [--mode mode] [--] file'\topens file for editing\n"
+"      \t'lpe --version'              \tprints version number\n"
+"      \t'lpe --help'                 \tprints this help message\n"
+msgstr ""
+"Опции:\t'lpe <file>'\tредактировать файл <file>\n"
+"      \t'lpe --version'\tсообщить номер версии\n"
+"      \t'lpe --help'\tвывести это справочное сообщение\n"
+
+#: src/screen.c:178
+msgid "Ctrl-E for Help"
+msgstr ""
+
+#: src/help.c:123
+msgid ""
+"Lpe: The Lightweight Programmer's Editor\n"
+"Help Screen\n"
+"\n"
+"Ctrl-Q           -- Move cursor to beginning of line (alternative to Home)\n"
+"Ctrl-W           -- Move cursor to end of line (alternative to End)\n"
+"Ctrl-R           -- Scroll one screen up (alternative to PgUp)\n"
+"Ctrl-T           -- Scroll one screen down (alternative to PgDn)\n"
+"Ctrl-O           -- Move to the next word\n"
+"Ctrl-P           -- Move to the previous word\n"
+"\n"
+"Ctrl-K           -- Kill the current line\n"
+"Ctrl-Y or Ctrl-U -- Insert the most recent block of killed lines\n"
+"Ctrl-S           -- Search for a specified string in the file\n"
+"Ctrl-A           -- Search again for the last search query\n"
+"\n"
+"Ctrl-F Ctrl-O    -- Open a new file to replace the current buffer\n"
+"Ctrl-F Ctrl-S    -- Save the buffer to disk\n"
+"Ctrl-F Ctrl-A    -- Save to disk with an alternate file name\n"
+"Ctrl-F Ctrl-R    -- Read a file and insert it at the current cursor "
+"position\n"
+"Ctrl-F Ctrl-E    -- Pretend that a buffer hasn't been modified\n"
+"Ctrl-F Ctrl-X    -- Next buffer\n"
+"Ctrl-F Ctrl-Z    -- Previous buffer\n"
+"Ctrl-F Ctrl-N    -- Open a new buffer from a file\n"
+"Ctrl-F Ctrl-L    -- Close current buffer\n"
+"\n"
+"Ctrl-B Ctrl-S    -- Set the mode of the current buffer\n"
+"Ctrl-B Ctrl-T    -- Toggle between hard and soft tabs for this buffer\n"
+"Ctrl-B Ctrl-A    -- Toggle automatic indentation of this buffer\n"
+"\n"
+"Ctrl-G Ctrl-A    -- Go to the first line of the buffer\n"
+"Ctrl-G Ctrl-S    -- Go to the last line of the buffer\n"
+"Ctrl-G Ctrl-G    -- Go to a specific line number of the buffer\n"
+"\n"
+"Ctrl-N Ctrl-R    -- Enter a value for the command repeater\n"
+"Ctrl-N Ctrl-T    -- Multiply the command repeater value by four\n"
+"Ctrl-N Ctrl-O    -- Start or stop recording a macro\n"
+"Ctrl-N Ctrl-P    -- Play back the last recorded macro\n"
+"\n"
+"Ctrl-V Ctrl-V    -- Pass the entire buffer through a shell command\n"
+"Ctrl-V Ctrl-A    -- Pass the entire buffer through an awk script\n"
+"Ctrl-V Ctrl-S    -- Pass the entire buffer through a sed script\n"
+"Ctrl-V Ctrl-B    -- Pass several lines of the buffer through a shell "
+"command\n"
+"Ctrl-V Ctrl-D    -- Pass several lines of the buffer through an awk script\n"
+"Ctrl-V Ctrl-F    -- Pass several lines of the buffer through a sed script\n"
+"\n"
+"Ctrl-D Ctrl-D    -- Perform an internal debug command\n"
+"Ctrl-D Ctrl-S    -- Execute a SLang command\n"
+"\n"
+"Ctrl-X           -- Write ALL buffers to disk and exit\n"
+"<interrupt>      -- Exit without writing to disk\n"
+"Ctrl-Z           -- Suspend the editor and escape to a prompt\n"
+"Ctrl-L           -- Erase and redraw the entire screen\n"
+"\n"
+"Notes:\n"
+"1. <interrupt> means your default terminal interrupt key, which is normally\n"
+"   set to Ctrl-C.\n"
+"\n"
+"2. Ctrl-Z is used to abort and suspend the editor.  This is completely\n"
+"   independent of the suspend key defined for your terminal.  Sorry about "
+"this,\n"
+"   but it appears to be a limitation of the screen management library "
+"(S-Lang)\n"
+"   that I use, which provides no option to preserve the suspend key, so I "
+"have\n"
+"   to emulate it with kill(0, SIGSTOP).\n"
+msgstr ""

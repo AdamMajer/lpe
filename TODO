@@ -1,0 +1,101 @@
+TODO: List of potential improvements in lpe
+
+Items in this list are not considered bugs, but would be beneficial changes to
+make in lpe and are on the back burner.
+
+-------------------------------------------------------------------------------
+
+- Make keymaps configurable. (priority: high)
+
+Change lpe so that the keymap is not hard-coded into init_slang_keys, but is
+rather set from configuration options.  This allows easier emulation of other
+text editors from lpe, and allows people to use the editor in ways that make
+sense to them.
+
+- Don't display carriage returns on lines. (priority: medium)
+
+There's some code to do this already... I'm thinking about exactly how it is
+best accomplished.  I want to do this right.
+
+- Convert all modes' syntax highlighting to one method. (priority: medium)
+
+Ack, this is a mess!  I do not like it one bit!  I need to look over all of my
+modules and find some standard way to do syntax highlighting -- Right now we
+have my method cmode, cppmode, and javamode, and Eckehard Berns' method in
+perlmode, htmlmode, and sgmlmode.  And they are very different from each other!
+This makes changing stuff very hard, because I'm guaranteed to break stuff, and
+I don't even understand Eckehard's code well enough to easily fix it.
+
+- Full screen editing of sed/awk manipulations. (priority: medium)
+
+Just a thought.  Since I've already designed input.c to allow for multiple open
+buffers, perhaps I could create an extra full buffer to edit the sed and awk
+scripts that are used by stream manipulation commands.  These could then
+request sedmode and awkmode by default in set_buf_mode, and it would make
+applying these sorts of things easier... sort of a meta-visual editor.  You
+could even recursively apply an awk script to a sed script which is then
+applied to the primary buffer.  This would be *very* nice if I obtained a sed,
+awk, and bourne script mode to go with it.
+
+- Change brace flashing. (priority: medium)
+
+If and only if syntax highlighting is enabled, instead of actually moving the
+cursor, I should just use a flash brace color to indicate the matching pair.
+Then when the cursor is moved over one of a matching pair of braces, I can
+highlight the pair as well.
+
+- Modify mode file format. (priority: medium)
+
+Change the modes to export a structure that more flexibly expresses what they
+can do.  This allows version compatibility checks, as well as supporting the
+linking of static libraries into the executable on platforms that don't support
+shared libraries.
+
+- Color unused keywords differently in Java. (priority: medium)
+
+Several of Java's reserved words don't really have a meaning.  They are
+reserved just for the hell of it.  These are byvalue, cast, const, future,
+generic, goto, inner, operator, outer, rest, and var.  It would help if I
+colored them a different color to indicate that their use is always an error.
+(Maybe even red.)
+
+- Update translations. (priority: medium)
+
+Most translations of lpe are getting stale.  Man pages are not up to date in
+other languages, and many messages are missing from many languages.
+
+- Write custom indentation functions for the various modules. (priority: low)
+
+Pretty obvious -- I'll do it when I get time, or I'll integrate it if some one
+else wants to do it well.  This tends to be a hard thing to do well, though,
+and the attempts I've seen have tended to make things a lot worse rather than
+better!
+
+- Implement at least a few mode-custom keys. (priority: low)
+
+Mostly, this needs to be done as an example of how to do it, and so I can get
+some experience with ease of use of the current interface.  Maybe I'll add a
+key to send a cmode buffer through indent -kr.
+
+- Translate to more languages. (priority: low)
+
+There are obviously other useful languages that could be supported by lpe.  I
+don't know any of them.  This is something that I'll include as more people
+send me translations -- but it isn't a big deal unless that happens.  I've got
+English, and that's all I'll use anyway.
+
+- Support more languages. (priority: low)
+
+I also need to rewrite the editor so that it can support unicode editing for
+languages that can't really be expressed by single-byte characters.  This is
+something to consider for the long term, but not something I have the ability
+to do right now.
+
+- Only load a window of the current file into the buffer. (priority: low)
+
+Instead of allocating space for an entire file, it may help with large files to
+load only a certain section of it.  The buffer would note the first and last
+lines that are loaded, and an attempt to scroll, search, etc beyond those lines
+would result in loading more of the file from disk.  This looks like it'd be a
+pain to implement, but I'll do so as soon as someone complains about large
+files in lpe.

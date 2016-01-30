@@ -1,0 +1,209 @@
+Changes from 1.2.5 to 1.2.6:
+- Memory leak and core dump fixes
+
+Changes from 1.2.4 to 1.2.5:
+- Multiple buffer support!
+- Much needed config file overhaul!
+- Lpe works as a pager now!
+- Build system and source tree are finally sane
+- Modes work much better (still some platform-specific bugs to solve here)
+- SSI instructions in htmlmode
+- Hungarian translation
+- Spanish manpage updated
+- Lispmode added
+- Debian directory with some packaging stuff
+
+Changes from 1.2.3 to 1.2.4:
+- Huge expansion of option file usage
+
+Changes from 1.2.2 to 1.2.3:
+- Fixed a bug in stream manipulation for large files
+- Changes to automatic indentation
+- Removed compile-time options, thereby massively simplifying code
+- Added rudimentary support for config files
+
+Changes from 1.2.1 to 1.2.2:
+- Fixed some syntax highlighting issues
+- Updated C++ keyword list for highlighter
+- Recognize 'cc' as a C++ file extension
+- Document building in non-root environments
+- Added online help option
+- Fixed incompatibilities with minibuf file completion
+
+Changes from 1.2.0 to 1.2.1:
+- Bug fixes for screen refresh and editor suspend
+- Bug fixes for gettext link problem
+
+Changes from 1.1.10 to 1.2.0:
+- Lots of code cleaning, bug fixes, aesthetic improvements, and testing
+- Other stuff I've forgotten about
+- Spanish translation
+
+Changes from 1.1.9 to 1.1.10:
+- Uses autoconf/automake/libtool (a HUGE thank you to Eckehard Berns for this)
+- Tab completion for modes
+- Bug fixes
+
+Changes from 1.1.8 to 1.1.9:
+- Huge changes to key bindings
+- File completion in minibuf
+- Extended auto-indent for cmode
+- Fixed line range/macro bug
+- Command repeater value on banner
+- Other bug fixes
+
+Changes from 1.1.7 to 1.1.8:
+- Line range stream manipulation commands
+- Home bounces between beginning of line and first non-whitespace
+- Revamped module interface
+- Removed a lot of the dynamic linking complexity
+- Moved modules to /usr/local/lib/lpe by default
+- Perlmode bug fix
+- Fixed HTML/SGML comments
+- Fixed control key display bug
+
+Changes from 1.1.6 to 1.1.7:
+- Stream manipulation commands
+- Command line option '--mode'
+- Fixes for Java syntax highlighting
+- Fixed xterm backspace/delete behavior
+- Various bug fixes
+
+Changes from 1.1.5 to 1.1.6:
+- Added macro recorder
+- Added Java and mail reading modes
+- Current mode displayed on status line
+- Ability to explicitly choose a mode
+- Next and prev word work in the minibuf
+- Efficiency improvements for choosing modes on scripts
+- Various bug fixes
+
+Changes from 1.1.4 to 1.1.5:
+- Generic auto-indentation
+- Command repeater
+- Next and previous word commands
+- Modes for Perl and SGML
+- Fixed compile time and code size of C/C++ modules
+- Efficiency improvements for syntax highlighting
+- Translation to German and Czech
+- Recognizes LPE_MODULE_PATH environment variable
+
+Changes from 1.1.3 to 1.1.4:
+- A C++ mode (brace flashing and syntax highlighting)
+- Syntax highlighting for HTML
+- A *really* important bug fix for an editor lockup
+- Other minor stuff
+
+Changes from 1.1.2 to 1.1.3:
+- Revamped the entire build system - no longer uses GNU autoconf
+- Now should build again on all platforms with an appropriate Config.make
+- Other minor stuff
+
+Changes from 1.1.1 to 1.1.2:
+- Drastic improvements to C syntax highlighting
+
+Changes from 1.1.0 to 1.1.1:
+- Syntax highlighting for C
+- Drastic improvements to brace flashing in C
+- Brace flashing (actually angle-bracket flashing) in HTML
+- Bug fixes
+
+Changes from 1.0.2 to 1.1.0:
+- Replaced patch library with an options.h header file
+- Implemented dynamic buffer modes to provide extensible language support
+
+Changes from 1.0.1 to 1.0.2:
+- Polish language support
+- Small bug fixes to TAB behavior, long minibuf prompts, etc
+
+Changes from 1.0.0 to 1.0.1:
+
+- Bulgarian language support
+- French language support
+- House cleaning in input.c
+- patches/flashbrace.patch becomes mostly usable
+
+Changes from 0.3.5 to 1.0.0:
+
+- Added file locking while reading and writing a file
+- Removed debugging code from release builds
+- Added a good bit of debugging support to debug builds
+- Fixed a few minor bugs in the build system
+- Bug fix for read file command, which wouldn't close the file
+- Other various bug fixes
+
+Changes from 0.3.4 to 0.3.5:
+
+- Find next command
+- fixed DEL stuff once and for all
+
+Changes from 0.3.3 to 0.3.4:
+
+- More code twiddling, a few bug-oid fixes, etc.
+
+Changes from 0.3.2 to 0.3.3:
+
+- Various bug fixes
+
+Changes from 0.3.1 to 0.3.2:
+
+- More autoconf twiddling... it's starting to look real by now!
+- Added more canonical language support at the configure level
+- Reconciled sources with ANSI C and made --enable-ansi work
+- Cleaned up the code a lot
+
+Changes from 0.3.0 to 0.3.1:
+
+- Autoconf fixes
+
+Changes from 0.2.7 to 0.3.0:
+
+- Revamped entire build system to use autoconf (but not automake)
+- Fixed ^? bug
+
+Changes from 0.2.6 to 0.2.7:
+
+- Verified FreeBSD port (thanks to Graeme Cross <gcross@netspace.net.au>)
+- No real changes beyond like one line... but it's worth re-releasing for
+  official FreeBSD support... first non-Linux platform
+
+Changes from 0.2.5 to 0.2.6:
+
+- Fixes to cursor handling in presence of 8-bit characters
+- Added ability for jumpy scrolling, for better remote terminal support
+
+Changes from 0.2.4 to 0.2.5:
+
+- Russian translations (thanks to Vladimir Popov <mashgrad@elist.ru>)
+- Started patch library (first patch thx to Chuck Mason <chuckjr@sundial.net>)
+- Fixed problem handling control characters in the buffer
+- Various code maintenance tasks, etc.
+
+Changes from 0.2.3 to 0.2.4:
+
+- Added a man page (yeah!)
+- Fixes for some pretty important bugs
+
+Changes from 0.2.2 to 0.2.3:
+
+- Much improved error handling, especially for out of memory -- running out of
+  memory should no longer crash lpe, but this has not been extensively tested
+- Compatibility improvements by isolating S-Lang dependencies to one file
+- Drawing optimizations to work better with gpm on the Linux console
+- Improved command line handling (thanks to Vladimir Popov <mashgrad@elist.ru>)
+
+Changes from 0.2.1 to 0.2.2:
+
+- Added /usr/local/include and /usr/local/lib to appropriate paths in build, in
+  case someone is building from a locally installed S-Lang library
+- Separated messages for easier localization
+- Kill buffer is now preserved when a new file is opened
+- Fixed limitation to standard ASCII characters in mini-buffer
+- Added mundane alternatives to arrow keys, etc. for cursor movement
+- Various minor bug fixes
+
+Changes from 0.2.0 to 0.2.1:
+
+- Fixed TAB support, which was previously somewhat broken
+- Fixed limitation to standard ASCII characters in buffer  (thanks go to
+  Vladimir Popov <mashgrad@elist.ru> for pointing this out)

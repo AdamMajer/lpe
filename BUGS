@@ -1,0 +1,115 @@
+BUGS: List of known problems in lpe
+
+Items on this list are recognized bugs and will be fixed as soon as I get
+around to it.  There is, however, no time guarantee.
+
+-------------------------------------------------------------------------------
+
+- SunOS includes don't properly define PATH_MAX. (priority: high)
+
+Apparently there's a different include that should do it.
+
+- Screen screws up on non-black background. (priority: high)
+
+Reported by travist@qlube.com -- attempting to use lpe on a non-black console
+with color support does not update non-text areas of the screen.  It leaves
+white bars all over the place.
+
+- Seg fault with binaries in module path. (priority: high)
+
+On i386/Linux (and probably other ELF platforms, and possibly some non-ELF
+platforms) add a directory containing binary programs to the module path.
+These files look like shared libraries and confuse the loader.  I'm not sure
+exactly how the loader gets confused yet...
+
+- Syntax highlighting gets corrupted by "yank" command. (priority: medium)
+
+Using yank sometimes marks a state as valid when it really isn't... and this
+causes the syntax highlighter to mess up.  If text on the screen is printed in
+red with a yellow bg, then chances are, this is what happened.  Doing any
+editing before the beginning of the "screwed up" part will fix this, as it will
+invalidate all the DFA states after the part you edited.
+
+I haven't seen this happen in a long time.  I'm not dismissing it yet as a bug,
+but I'd really appreciate it if someone could give me some discrete steps to
+reproduce it.  Or perhaps it was all a bad dream...
+
+- Solaris builds fail on intl/libintl.a. (priority: medium)
+
+This causes a build error.  A second invocation of make is successful, though,
+so this is reduced to an inconvenience that is ugly and should be fixed some
+time soon.  Until then, the work-around is documented in the README.
+
+- Libtool library weirdness screws up mode handling. (priority: medium)
+
+The existence of those strange ".la" files confuses the mode searching code and
+results in some harmless errors to stderr.  No big problem, but they can cause
+some confusion among users and I've gotten several bug reports about it.
+
+- Comments badly handled in cppmode and javamode. (priority: medium)
+
+Line comments aren't recognized by brace flashing code, so brace flashing can
+get screwed up by non-matching sets of braces in line comments.
+
+- Java syntax highlighting lacks '\uxxxx' support. (priority: medium)
+
+The syntax highlighter for Java doesn't know about the \uxxxx style unicode
+escape sequences.  It would be really simple to support these in string
+constants, but that would be hiding the problem.  The real problem is lines
+like:
+
+// this is a \u000A test of unicode escape sequences
+try\u0050ing
+try\u002Bing
+
+In the first example above, the comment should end at the escape sequence.  In
+the second, 'try' should not be highlighted as a keyword.  In the third example
+try *should* be highlighted as a keyword.  Escape sequences should, according
+to the spec, be translated before lexical scanning and even before comments are
+removed from the source.  In reality, Jikes is the only compiler I've tried
+that does this correctly... but I would prefer to follow the spec.
+
+- Lpe is a bit of a memory hog (priority: low)
+
+Lpe represents files internally as a doubly linked list of lines, which means
+that there is substantial overhead per line of the file.  Fixing this
+completely would require switching to a new storage format, most likely with
+its own weaknesses.
+
+A couple of partial solutions are available here if anyone wants to implement
+them.  The ones I can think of are:
+
+    * Store the next and prev pointers as an xor of the two, and add fields to
+      the buf_pos structure to hold the current next or prev pointer.  This
+      saves one word per line of the file.
+
+    * Allocate space for the actual text of the line directly after the
+      buf_line structure, letting the buf_line serve as a header.  This would
+      save an additional one word per line of a file.  It would also really
+      complicate reallocation, since the address of a linked list node would
+      periodically change, invalidating pointers into the linked list.
+
+    * Change the granularity with which storage is reallocated for a line.
+      This is a trade-off between speed and space, and I haven't seen any
+      really bad memory problems yet, so I'm leaving it at 10 byte intervals.
+      This can easily be changed, as it is a preprocessor constant.
+
+    * Occasionally decrease the space allocated for a line when its length
+      decreases, especially to zero.  Right now, the storage allocated for a
+      line == the maximum length it has been in this editing session.  This
+      could be especially helpful for zero-length lines, given their popularity
+      in most programming languages.
+
+- Handling for terminal resizes is a little messy (priority: low)
+
+Because SLkp_getkey() blocks without interruption even by signals, signals like
+SIGWINCH don't get handled until the next keystroke.  This is really an
+appearance issue, because the screen is updated as the user begins to do
+something.  For this reason, it's considered a design choice for the moment.
+If a solution is found that doesn't have harmful side effects then this may
+change.
+
+This problem also presents itself when the application is resumed and it was
+initially suspended using kill from a separate terminal or kill() from a
+separate process.  This situation is sufficiently rare that I am not going to
+even think about it.  Thus, this issue is named after terminal resizes.

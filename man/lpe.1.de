@@ -1,0 +1,146 @@
+.TH LPE 1 "12 Dezember 1998"
+.SH NAME
+lpe \- Abgespeckter Editor für Programmierer
+.SH AUFRUF
+\fBlpe\fP [ --help | --version ]
+.br
+\fBlpe\fP [ -- ] \fIDatei\fP
+.SH BESCHREIBUNG
+\fILpe\fP ist ein minimalistischer, visueller Echtzeittexteditor. Er
+ist so ausgelegt, daß er das Editieren von Code einfacher macht, ohne
+daß der Benutzer der Shell entfremdet wird.
+.SS Optionen
+.TP
+\fB--help\fP
+Gibt eine kurze Beschreibung des Programmaufrufs aus und beendet das
+Programm. Dies muß die erste Option sein. Alle weiteren Optionen werden
+ignoriert.
+.TP
+\fB--version\fP
+Gibt eine Meldung über die Version von \fIlpe\fP aus und beendet das
+Programm. Dies muß die erste Option sein. Alle weiteren Optionen werden
+ignoriert.
+.TP
+\fB--\fP
+Alle weiteren Optionen werden als Dateinamen verstanden. Damit ist es möglich,
+Dateien zu bearbeiten, deren Name mit einem \- Zeichen anfangen.
+.SH HINWEISE
+Wie schon weiter oben erwähnt ist \fIlpe\fP als ein minimalistische Texteditor
+ausgelegt. Er soll klein, robust und effizient sein, wobei er aber nicht zu
+viele Überflüssige Features bietet. Daher ist es auch sehr einfach, \fIlpe\fP
+zu erlernen, wenn man sich die wenigen Tastaturkommandos merkt.
+.SS Tastaturkommandos
+.TP
+\fBHoch\fP oder \fBAlt+K\fP
+Bewege den Cursor eine Zeile nach oben
+.TP
+\fBRunter\fP oder \fBAlt+J\fP
+Bewege den Cursor eine Zeile nach unten
+.TP
+\fBLinks\fP oder \fBAlt+H\fP
+Bewege den Cursor ein Zeichen nach links
+.TP
+\fBRechts\fP oder \fBAlt+L\fP
+Bewege den Cursor ein Zeichen nach rechts
+.TP
+\fBPos1\fP oder \fBAlt+0\fP
+Bewege den Cursor an den Anfang der Zeile
+.TP
+\fBEnde\fP oder \fBAlt+$\fP
+Bewege den Cursor an das Ende der Zeile
+.TP
+\fBBildHoch\fP oder \fBAlt+B\fP
+Scrolle einen Bildschirm weit nach oben
+.TP
+\fBBildRunter\fP oder \fBAlt+F\fP
+Scrolle einen Bildschirm weit nach unten
+.TP
+\fBAlt+A\fP
+Bewege den Cursor an den Anfang der Datei
+.TP
+\fBAlt+S\fP
+Bewege den Cursor an das Ende der Datei
+.TP
+\fBStrg+S\fP
+Suche nach einer bestimmten Zeichenkette in der Datei
+.TP
+\fBStrg+A\fP
+Suche nach dem nächsten Vorkommen der zu letzt gesuchten Zeichenkette
+.TP
+\fBStrg+G\fP
+Gehe zu der angegebenen Zeile innerhalb der Datei
+.TP
+\fBStrg+K\fP
+Lösche die aktuelle Zeile
+.TP
+\fBStrg+Y\fP oder \fBStrg+U\fP
+Füge den Block von zu letzt gelöschten Zeilen ein
+.TP
+\fBStrg+R\fP
+Lies eine Datei ein und füge sie an der Position des Cursors ein
+.TP
+\fBStrg+T\fP
+Wechsel zwischen Hardware- und Software-Tabulatoren
+.TP
+\fBStrg+O\fP
+Öffne eine neue Datei innerhalb des Editors
+.TP
+\fBStrg+W\fP
+Sichere die Datei
+.TP
+\fBStrg+Q\fP
+Sichere die Datei unter einem anderen Dateinamen
+.TP
+\fBStrg+E\fP
+Vergiß die Modifikationen an der Datei
+.TP
+\fBStrg+L\fP
+Den Bildschirm neu aufbauen
+.TP
+\fBStrg+X\fP
+Sichere die Datei und verlasse den Editor
+.TP
+\fBStrg+D\fP
+Führe einen internen Debugbefehl aus, falls Debugging eingeschaltet ist.
+.TP
+\fB<Unterbrechung>\fP
+Beende den Editor ohne die Datei zu sichern
+.TP
+\fBStrg+Z\fP
+Halte den Editor an (suspend) und kehre zur Kommandozeile zurück
+
+\fB<Unterbrechung>\fP bezieht sich auf die Unterbrechungstaste des Terminals.
+Normalerweise ist das Strg+C, kann aber von Terminal zu Terminal verschieden
+sein. Im Gegensatz dazu ist Strg+Z eine feste Tastenkombination, egal welche
+Stopptaste beim Terminal eingestellt ist.
+
+.SH MODULE
+
+Obwohl \fIlpe\fP klein sein soll, hat er dennoch die Möglichkeit,
+kompliziertere Aktionen auszuführen, die durch Dateimodi festgelegt werden.
+Diese Modi werden durch externe Module realisiert, die zur Laufzeit abhängig
+von dem jeweiligen Dateityp nachgeladen werden.
+
+Alle Module müssen in einem der in dem Abschnitt DATEIEN angegebenen
+Verzeichnisse abgelegt werden. Diese Verzeichnisse werden zur Laufzeit
+durchsucht, um ein der Datei entsprechendes Modul zu finden.
+
+.SH DATEIEN
+.TP
+\fB/etc/lpe\fP
+Verzeichnis für systemweite Module
+.TP
+\fB$HOME/.lpe\fP
+Verzeichnis für Benutzerspezifische Module
+
+Beide Verzeichnisse werden zur Laufzeit durchsucht. Alle regulären Dateien
+innerhalb der Verzeichnisse werden als potentielle Module für \fIlpe\fP
+interpretiert. Unterverzeichnisse werden in der Suche nicht berücksichtigt.
+.SH "SIEHE AUßERDEM"
+emacs(1), pico(1)
+.SH AUTOR
+Chris Smith, cd_smith@ou.edu
+.SH BUGS
+\&'ne Menge -- die Datei BUGS innerhalb der Sourcen beinhaltet ein paar davon.
+Ich werden diese Manpage nicht oft genug updaten, um mit der Liste der Bugs
+mitzuhalten. Daher versuche ich lieber gar nicht, alle hier aufzuführen.

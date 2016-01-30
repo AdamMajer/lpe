@@ -1,0 +1,4 @@
+src/input.c
+src/lpe.c
+src/screen.c
+src/help.c

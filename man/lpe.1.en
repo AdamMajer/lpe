@@ -1,0 +1,187 @@
+.TH LPE 1 "12 December 1998"
+.SH NAME
+lpe \- Lightweight programmer's editor
+.SH SYNOPSIS
+\fBlpe\fP [ --help | --version ]
+.br
+\fBlpe\fP [--mode <mode>] [ -- ] \fIfile\fP
+.SH DESCRIPTION
+\fILpe\fP is a small, fast, visual text editor designed to make editing code
+easier.  It provides simultaneously all the features that may be required in a
+good code editor while preserving a light and intuitive feel that makes it nice
+to use.
+.SS Options
+.TP
+\fB--help\fP
+Prints a brief description of program usage and terminates.  This must be the
+first option to \fBlpe\fP, and all other options are ignored.
+.TP
+\fB--version\fP
+Prints a message indication the program version and terminates.  This must be
+the first option to \fBlpe\fP, and all other options are ignored.
+.TP
+\fB--mode\fP
+Sets the buffer mode to the one specified, instead of scanning for a suitable
+mode from those available.
+.TP
+\fB--\fP
+Treat future arguments as file names, not options.  This allows lpe to be used
+to edit files starting with the \- character.
+.SH NOTES
+What follows are the control key functions for lpe.  Arrow keys, home, end,
+backspace, delete and the like all do as they would be expected to do.  Some
+control keys are bound to the same function as some standard movement keys,
+such as home or page down.  This is because the more intuitive keys may not be
+available on some systems.
+.SS Command Keys
+.TP
+\fBCtrl-Q\fP
+Move cursor to beginning of line (alternative to Home)
+.TP
+\fBCtrl-W\fP
+Move cursor to end of line (alternative to End)
+.TP
+\fBCtrl-R\fP
+Scroll one screen up (alternative to PgUp)
+.TP
+\fBCtrl-T\fP
+Scroll one screen down (alternative to PgDn)
+.TP
+\fBCtrl-O\fP
+Move to the next word
+.TP
+\fBCtrl-P\fP
+Move to the previous word
+.TP
+\fBCtrl-K\fP
+Kill the current line
+.TP
+\fBCtrl-Y\fP or \fBCtrl-U\fP
+Insert the most recent block of killed lines
+.TP
+\fBCtrl-S\fP
+Search for a specified string in the file
+.TP
+\fBCtrl-A\fP
+Search again for the last search query
+.TP
+\fBCtrl-F Ctrl-O\fP
+Open a new file to replace the current buffer
+.TP
+\fBCtrl-F Ctrl-S\fP
+Save the buffer to disk
+.TP
+\fBCtrl-F Ctrl-A\fP
+Save to disk with an alternate file name
+.TP
+\fBCtrl-F Ctrl-R\fP
+Read a file and insert it at the current cursor position
+.TP
+\fBCtrl-F Ctrl-E\fP
+Pretend that a buffer hasn't been modified
+.TP
+\fBCtrl-B Ctrl-S\fP
+Set the mode of the current buffer
+.TP
+\fBCtrl-B Ctrl-T\fP
+Toggle between hard and soft tabs for this buffer
+.TP
+\fBCtrl-B Ctrl-A\fP
+Toggle automatic indentation of this buffer
+.TP
+\fBCtrl-G Ctrl-A\fP
+Go to the first line of the buffer
+.TP
+\fBCtrl-G Ctrl-S\fP
+Go to the last line of the buffer
+.TP
+\fBCtrl-G Ctrl-G\fP
+Go to a specific line number of the buffer
+.TP
+\fBCtrl-N Ctrl-R\fP
+Enter a value for the command repeater
+.TP
+\fBCtrl-N Ctrl-T\fP
+Multiply the command repeater value by four
+.TP
+\fBCtrl-N Ctrl-O\fP
+Start or stop recording a macro
+.TP
+\fBCtrl-N Ctrl-P\fP
+Play back the last recorded macro
+.TP
+\fBCtrl-V Ctrl-V\fP
+Pass the entire buffer through a shell command
+.TP
+\fBCtrl-V Ctrl-A\fP
+Pass the entire buffer through an awk script
+.TP
+\fBCtrl-V Ctrl-S\fP
+Pass the entire buffer through a sed script
+.TP
+\fBCtrl-V Ctrl-B\fP
+Pass several lines of the buffer through a shell command
+.TP
+\fBCtrl-V Ctrl-D\fP
+Pass several lines of the buffer through an awk script
+.TP
+\fBCtrl-V Ctrl-F\fP
+Pass several lines of the buffer through a sed script
+.TP
+\fBCtrl-D\fP
+Perform an internal debug command
+.TP
+\fBCtrl-X\fP
+Write the buffer to disk and exit
+.TP
+\fB<interrupt>\fP
+Exit without writing to disk
+.TP
+\fBCtrl-Z\fP
+Suspend the editor and escape to a prompt
+.TP
+\fBCtrl-L\fP
+Erase and redraw the entire screen
+
+\fB<interrupt>\fP refers to your terminal's interrupt key.  This is often
+Ctrl-C, but can vary between terminals.  Ctrl-Z, on the other hand, is fixed,
+regardless of the normal stop key for your terminal.
+
+.SH MODULES
+
+Although \fBlpe\fP is meant to be small, it has the capability of performing
+more advanced actions through a feature known as buffer modes.  Buffer modes
+allow \fBlpe\fP to act differently according to the programming language in
+the current buffer.  They are implemented through language modules, which are
+loaded at run-time by lpe to handle buffers that they apply to.
+
+All language modules should be placed in a module repository directory.  These
+directories are set by the \fBLPE_MODULE_PATH\fP environment variable, which
+should be a colon-separated list of directories (similar to PATH).  If this
+variable is not set, then lpe scans for modules in the following locations, and
+in this order:
+
+\fB$HOME/.lpe\fP
+\fB/usr/local/lib/lpe\fP
+\fB/usr/lib/lpe\fP
+\fB/etc/lpe\fP
+
+Note that the /etc/lpe directory is old, obsolete, and non-standard.  It should
+not be used to hold modules.  As modules are binary files and are specific to
+the architecture that uses them, they should be properly placed in the lib
+directories listed above.
+
+These locations are scanned at run-time, and any regular files in them are
+interpreted as potential language modules for use by lpe.  Subdirectories will
+not be scanned.  A buffer will be assigned the first mode found that applies to
+that file, so for example a mode in a user's home directory will override one
+in the system-wide lib directory.
+
+.SH "SEE ALSO"
+emacs(1), pico(1)
+.SH AUTHOR
+Chris Smith, cd_smith@ou.edu
+.SH BUGS
+Lots of 'em -- see the BUGS file in the distribution for a partial list.  I am
+not planning on updating this man page often enough to keep up with the bug
+list, so I won't even try to list bugs here.

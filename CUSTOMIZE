@@ -1,0 +1,134 @@
+Customization Guide for Lpe
+
+This file describes where to start in customizing lpe to fit your own
+preferences.  As of version 1.2.4, lpe reads a configuration file that can be
+used to customize its behavior.  I will be adding more options to this config
+file as time goes on, and that will be most of what this document describes.
+If you are using a version prior to 1.2.4-mhp-2, you'll need to check out the
+CUSTOMIZE file from that distribution, as this information will not apply.
+
+The configuration files are SLang scripts, however, you don't have to know
+SLang to be able to configure lpe. This documentation will show you the basic
+things that can get you started.
+
+The main configuration file is located at $sysconfdir/lperc, depending on
+how you configured lpe this can be anything. Most common configurations will
+probably be the following:
+	/usr/local/etc/lperc
+	/usr/etc/lperc
+	/etc/lperc
+
+A per-user configuration file exists too, it is located in
+	~/.lpe/custom
+
+Before modifying the main file, it is a good idea to test the modifications in
+the per-user configuratio file, so you won't break anything.
+
+Lpe does NOT stop at the first file.  Instead, it reads all files present, and
+values in later files override values from prior files.  This means that you
+can use the .lpe/custom file from your home directory to override site-wide
+defaults in /etc/lperc, or compiled-in application defaults. The application
+defaults are only used if none of the configuration files can be found.
+
+As I said before, the configuration files are SLang scripts, therefore you
+can place SLang function calls into them and whatever SLang allows. For
+beginners, the lpe_set_mode_option function will be the most useful. Currently,
+this is the only function that affects lpe directly. Its syntax is the
+following:
+
+	lpe_set_option ( <option id>, <value> );
+
+The <option id> argument consists of three parts: the mode's name, the
+section name, and the option id itself. These parts are separated by dots.
+So for example, if you want to turn off highlighting in all modes, you'd place
+the following line to your ~/.lpe/custom file:
+
+	lpe_set_option ( "global.general.highlight", 0 );
+
+Note that the "global" name for a mode means that it is global, and affects
+all modes. However, you can override it. So if you want to reenable syntax
+highlightin for the 'C' mode, you'd place the following line to your 
+~/.lpe/custom file too:
+
+	lpe_set_option ( "cmode.general.highlight", 1 );
+
+At this time, only three sections exist: general, color and background.
+
+The general section contains the following options:
+
+offerhelp - Print a message on the status bar explaining how to get help.  This
+is sometimes useful for people not familiar with the keys.  A non-zero value
+will display the message, and a 0 value will not.  The default is 1 for all
+modes.
+
+hardtab - The TAB key inserts actual tab characters, versus inserting spaces to
+the next tabstop position.  A non-zero values uses TABS, and a zero values uses
+spaces.  The default is 1 for all modes.
+
+autoindent - When the Enter key is pressed, insert whitespace at the beginning
+of the new line to match the indent from the previous line.  Non-zero turns it
+on.  In general, programming modes have a default of on, whereas most other
+modes turn this off by default.
+
+flashbrace - This option only has an effect for modes that support brace
+flashing.  Flash the cursor back to an opening brace when a closing one is
+typed.  This can be useful for tracking nesting.  The default is on (non-zero)
+for all modes where brace flashing is supported.
+
+highlight - This option only has an effect for modes that support syntax
+highlighting.  Color the text according to its meaning as defined by the mode.
+The default is on (non-zero) for all modes that support it.
+
+The color and background sections are mode dependent, please look at
+the sources for what options are available for a specific mode. Later,
+a few examples will be included here.
+
+Things that can't be set from the configuration file:
+
+-- Translating messages for localization --------------------------------------
+
+Lpe uses GNU gettext, so translations happen in a manner analogous to other
+gettext projects.  See the file ABOUT-NLS for more information.  Notice that
+some messages come from the system itself, via the strerror() function call.
+I expect that these would already appear in your desired language.  If they do
+not, however, you should see about getting a localized version of libc, as
+there is nothing that lpe can reasonably do about this situation.
+
+Man pages can be translated and stored in a file called lpe.1.xx, where xx is
+the ISO two-letter language code for your language.  (Please use the language
+code, not the country code, as they do often differ.  I already have this
+problem with the Czech translation, and I'd prefer not to duplicate it.)
+
+Note that many translations are out of date, so you'll probably want to start
+from the English version if possible, just to be sure you don't miss anything
+(because I use English so it's always up to date with the current release.)
+
+Once you've finished translating, send me the translated man page and message
+catalog and I'll include it in a future version of the editor.
+
+-- Changing key bindings ------------------------------------------------------
+
+Key bindings are defined in screen.c, in the function init_slang_keys().  That
+function is a sequence of lines that ought to look something like this:
+
+    SLkp_define_keysym("\033\150", SL_KEY_LEFT);   /* Alt-H  */
+    SLkp_define_keysym("\033\152", SL_KEY_DOWN);   /* Alt-J  */
+    ...
+    SLkp_define_keysym("\014", LPE_REFRESH_KEY);   /* Ctrl-L */
+    SLkp_define_keysym("\032", LPE_SUSPEND_KEY);   /* Ctrl-Z */
+
+This does just what it looks like it does: defines the keys for all the editor
+commands.  The value in the first parameter is the key binding for a given
+command, identified by the second parameter.  You can define two key bindings
+for a command by including two calls to SLkp_define_keysym, as seen in the yank
+command.  You can also define multi-key bindings for a command, as demonstrated
+by the cursor movement keys.  (Actually, in the case of cursor movement, those
+are escape sequences that come from a single key.  The same technique works for
+bindings that require typing two keystrokes.)
+
+The one key you can't change is the interrupt key, because it comes from your
+terminal settings.  If you're intent on changing this, try passing 0 as the
+first parameter to the SLang_init_tty call in init_slang(), then write a
+handler for the desired new interrupt key, in input.c, which simply sets the
+global variable 'quit' to 1 and returns.  A similar technique will cause the
+minibuf to support your new interrupt character as well.

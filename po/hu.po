@@ -1,0 +1,281 @@
+# Hungarian translation for LPE.
+# Copyright (C) 2000 Free Software Foundation, Inc.
+# Gergely Nagy <algernon@madhouse.lonyay.edu.hu>, 2000.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: LPE 1.2.4\n"
+"POT-Creation-Date: 2001-06-20 12:19+0200\n"
+"PO-Revision-Date: 2000-07-14 20:46+0200\n"
+"Last-Translator: Gergely Nagy <algernon@madhouse.lonyay.edu.hu>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. This is just as much an overflow as running out of keys
+#: src/input.c:105 src/input.c:2348
+msgid "Macro overflow"
+msgstr "Makró túlcsordulás"
+
+#: src/input.c:889 src/input.c:955 src/input.c:1056 src/input.c:1268
+msgid "file: "
+msgstr "állomány: "
+
+#: src/input.c:903 src/input.c:926
+msgid "File saved successfully"
+msgstr "Állomány sikeresen mentve"
+
+#: src/input.c:946
+msgid "Current buffer modified"
+msgstr "Aktuális puffer módosult"
+
+#: src/input.c:1134
+msgid "search term: "
+msgstr "keresendõ szöveg: "
+
+#: src/input.c:1172
+msgid "Found"
+msgstr "Találat"
+
+#: src/input.c:1182
+msgid "Not found"
+msgstr "Nincs találat"
+
+#: src/input.c:1198
+msgid "line: "
+msgstr "sor: "
+
+#: src/input.c:1442
+msgid "Using soft tabs"
+msgstr "Soft tab használata"
+
+#: src/input.c:1446
+msgid "Using hard tabs"
+msgstr "Hard tab használata"
+
+#: src/input.c:1518
+msgid "Mismatched braces"
+msgstr "Hibás zárójelezés"
+
+#: src/input.c:1560
+msgid "Autoindent off"
+msgstr "Automatikus tördelés ki"
+
+#: src/input.c:1564
+msgid "Autoindent on"
+msgstr "Automatikus tördelés be"
+
+#: src/input.c:1574
+msgid "count: "
+msgstr "szám: "
+
+#: src/input.c:1608
+msgid "Macro recorder off"
+msgstr "Makrórögzítõ ki"
+
+#: src/input.c:1614
+msgid "Macro recorder on"
+msgstr "Makrórögzítõ be"
+
+#: src/input.c:1648
+msgid "mode: "
+msgstr "mód: "
+
+#: src/input.c:1804 src/input.c:1950
+msgid "shell: "
+msgstr "shell: "
+
+#: src/input.c:1814 src/input.c:1854 src/input.c:1895 src/input.c:1960
+#: src/input.c:2049 src/input.c:2138
+msgid "Command failed"
+msgstr "Sikertelen parancs"
+
+#: src/input.c:1844 src/input.c:2039
+msgid "awk: "
+msgstr "awk: "
+
+#: src/input.c:1885 src/input.c:2128
+msgid "sed: "
+msgstr "sed: "
+
+#: src/input.c:2231
+msgid "debug: "
+msgstr "debug: "
+
+#: src/input.c:2246
+msgid "Unknown debug request"
+msgstr "Ismeretlen debug kérés"
+
+#: src/input.c:2258
+#, fuzzy
+msgid "command: "
+msgstr "szám: "
+
+#: src/lpe.c:108
+#, c-format
+msgid "%s version %s\n"
+msgstr "%s %s verizó\n"
+
+#: src/lpe.c:116
+msgid ""
+"The lpe text editor is dedicated to all those who died at\n"
+"Columbine High School in Littleton, CO, USA on April 20, 1999.\n"
+"We will always remember you.\n"
+msgstr ""
+
+#: src/lpe.c:131
+#, c-format
+msgid "error in option: %s\n"
+msgstr "hibás opció: %s\n"
+
+#: src/lpe.c:134
+msgid ""
+"usage:\t'lpe [--mode mode] [--] file'\topens file for editing\n"
+"      \t'lpe --version'              \tprints version number\n"
+"      \t'lpe --help'                 \tprints this help message\n"
+msgstr ""
+"használat:\t'lpe [--mode mód] [--] állomány'\tállomány megnyitása "
+"szerkesztésre\n"
+"      \t'lpe --version'              \tverziószám kiírása\n"
+"      \t'lpe --help'                 \tez a segítõuzenet\n"
+
+#: src/screen.c:178
+msgid "Ctrl-E for Help"
+msgstr "Ctrl-E Segítség"
+
+#: src/help.c:123
+#, fuzzy
+msgid ""
+"Lpe: The Lightweight Programmer's Editor\n"
+"Help Screen\n"
+"\n"
+"Ctrl-Q           -- Move cursor to beginning of line (alternative to Home)\n"
+"Ctrl-W           -- Move cursor to end of line (alternative to End)\n"
+"Ctrl-R           -- Scroll one screen up (alternative to PgUp)\n"
+"Ctrl-T           -- Scroll one screen down (alternative to PgDn)\n"
+"Ctrl-O           -- Move to the next word\n"
+"Ctrl-P           -- Move to the previous word\n"
+"\n"
+"Ctrl-K           -- Kill the current line\n"
+"Ctrl-Y or Ctrl-U -- Insert the most recent block of killed lines\n"
+"Ctrl-S           -- Search for a specified string in the file\n"
+"Ctrl-A           -- Search again for the last search query\n"
+"\n"
+"Ctrl-F Ctrl-O    -- Open a new file to replace the current buffer\n"
+"Ctrl-F Ctrl-S    -- Save the buffer to disk\n"
+"Ctrl-F Ctrl-A    -- Save to disk with an alternate file name\n"
+"Ctrl-F Ctrl-R    -- Read a file and insert it at the current cursor "
+"position\n"
+"Ctrl-F Ctrl-E    -- Pretend that a buffer hasn't been modified\n"
+"Ctrl-F Ctrl-X    -- Next buffer\n"
+"Ctrl-F Ctrl-Z    -- Previous buffer\n"
+"Ctrl-F Ctrl-N    -- Open a new buffer from a file\n"
+"Ctrl-F Ctrl-L    -- Close current buffer\n"
+"\n"
+"Ctrl-B Ctrl-S    -- Set the mode of the current buffer\n"
+"Ctrl-B Ctrl-T    -- Toggle between hard and soft tabs for this buffer\n"
+"Ctrl-B Ctrl-A    -- Toggle automatic indentation of this buffer\n"
+"\n"
+"Ctrl-G Ctrl-A    -- Go to the first line of the buffer\n"
+"Ctrl-G Ctrl-S    -- Go to the last line of the buffer\n"
+"Ctrl-G Ctrl-G    -- Go to a specific line number of the buffer\n"
+"\n"
+"Ctrl-N Ctrl-R    -- Enter a value for the command repeater\n"
+"Ctrl-N Ctrl-T    -- Multiply the command repeater value by four\n"
+"Ctrl-N Ctrl-O    -- Start or stop recording a macro\n"
+"Ctrl-N Ctrl-P    -- Play back the last recorded macro\n"
+"\n"
+"Ctrl-V Ctrl-V    -- Pass the entire buffer through a shell command\n"
+"Ctrl-V Ctrl-A    -- Pass the entire buffer through an awk script\n"
+"Ctrl-V Ctrl-S    -- Pass the entire buffer through a sed script\n"
+"Ctrl-V Ctrl-B    -- Pass several lines of the buffer through a shell "
+"command\n"
+"Ctrl-V Ctrl-D    -- Pass several lines of the buffer through an awk script\n"
+"Ctrl-V Ctrl-F    -- Pass several lines of the buffer through a sed script\n"
+"\n"
+"Ctrl-D Ctrl-D    -- Perform an internal debug command\n"
+"Ctrl-D Ctrl-S    -- Execute a SLang command\n"
+"\n"
+"Ctrl-X           -- Write ALL buffers to disk and exit\n"
+"<interrupt>      -- Exit without writing to disk\n"
+"Ctrl-Z           -- Suspend the editor and escape to a prompt\n"
+"Ctrl-L           -- Erase and redraw the entire screen\n"
+"\n"
+"Notes:\n"
+"1. <interrupt> means your default terminal interrupt key, which is normally\n"
+"   set to Ctrl-C.\n"
+"\n"
+"2. Ctrl-Z is used to abort and suspend the editor.  This is completely\n"
+"   independent of the suspend key defined for your terminal.  Sorry about "
+"this,\n"
+"   but it appears to be a limitation of the screen management library "
+"(S-Lang)\n"
+"   that I use, which provides no option to preserve the suspend key, so I "
+"have\n"
+"   to emulate it with kill(0, SIGSTOP).\n"
+msgstr ""
+"Lpe: The Lightweight Programmer's Editor\n"
+"Segítség\n"
+"\n"
+"Ctrl-Q           -- Kurzor mozgatása a sor elejére (a Home alternatívája)\n"
+"Ctrl-W           -- Kurzor mozgatása a sor végére (az End alternatívája)\n"
+"Ctrl-R           -- Görgetés egy képernyõvel feljebb (a PgUp alternatívája)\n"
+"Ctrl-T           -- Görgetés egy képernyõvel lejebb (a PgDn alternatívája)\n"
+"Ctrl-O           -- Ugrás a következõ szóra\n"
+"Ctrl-P           -- Ugrás az elõzõ szóra\n"
+"\n"
+"Ctrl-K           -- Aktuális sor törlése\n"
+"Ctrl-Y / Ctrl-U  -- Utoljára törölt sor beszúrása\n"
+"Ctrl-S           -- Keresés megadott szövegrészletre az állományban\n"
+"Ctrl-A           -- Elõzõleg megadott keresés folytatása\n"
+"\n"
+"Ctrl-F Ctrl-O    -- Új állomány megnyitása a pufferbe\n"
+"Ctrl-F Ctrl-S    -- A puffer lemezre mentése\n"
+"Ctrl-F Ctrl-A    -- A puffer lemezre mentése más néven\n"
+"Ctrl-F Ctrl-R    -- Állomány beszúrása az aktuális kurzorpozícióba\n"
+"Ctrl-F Ctrl-E    -- Puffer státuszának átállítása modosulatlanra\n"
+"\n"
+"Ctrl-B Ctrl-S    -- Az aktuális puffer módjának beállítása\n"
+"Ctrl-B Ctrl-T    -- Hard és soft tab ki/be kapcsolása az aktuális pufferen\n"
+"Ctrl-B Ctrl-A    -- Automatikus sorkövetés ki/be kapcsolása az aktuális "
+"pufferen\n"
+"\n"
+"Ctrl-G Ctrl-A    -- Ugrás a puffer elsõ sorára\n"
+"Ctrl-G Ctrl-S    -- Ugrás a puffer utolsó sorára\n"
+"Ctrl-G Ctrl-G    -- Ugrás a puffer egy megadott sorára\n"
+"\n"
+"Ctrl-N Ctrl-R    -- Értékadás a parancsismétlõnek\n"
+"Ctrl-N Ctrl-T    -- Parancsismétlõ értékének négyszerezése\n"
+"Ctrl-N Ctrl-O    -- Makrórögzítõ indítása/leállítása\n"
+"Ctrl-N Ctrl-P    -- Utoljára felvett makró lejátszása\n"
+"\n"
+"Ctrl-V Ctrl-V    -- Az egész puffer átadása egy shell parancsnak\n"
+"Ctrl-V Ctrl-A    -- Az egész puffer átadása egy awk szkriptnek\n"
+"Ctrl-V Ctrl-S    -- Az egész puffer átadása egy sed szkriptnek\n"
+"Ctrl-V Ctrl-B    -- A puffer néhány sorának átadása egy shell parancsnak\n"
+"Ctrl-V Ctrl-D    -- A puffer néhány sorának átadása egy awk szkriptnek\n"
+"Ctrl-V Ctrl-F    -- A puffer néhány sorának átadása egy sed szkriptnek\n"
+"\n"
+"Ctrl-D           -- Belsõ debug parancs végrehajtása\n"
+"\n"
+"Ctrl-X           -- Puffer lemezre írása és kilépés\n"
+"<megszakítás>    -- Kilépés lemezre írás nélkül\n"
+"Ctrl-Z           -- Szövegszerkesztõ felfüggesztése, visszatérés a shell "
+"parancssorhoz\n"
+"Ctrl-L           -- Az egész képernyõ törlése és újrarajzolása\n"
+"\n"
+"Megjegyzése:\n"
+"1. <megszakítás> az alapértelmezett megszakító-billentyût jelenti, ami "
+"alapesetben\n"
+"   Ctrl-C.\n"
+"\n"
+"2. Ctrl-Z arra használható hogy felfüggesszük a szövegszerkesztõ futását. Ez "
+"teljesen\n"
+"   független a terminál felfüggesztõ-billentyûjétõl. Elnézést ezért, de úgy "
+"néz ki, hogy\n"
+"   ez a képernyõkezelõ függvénykönyvtár (S-Lang) egy korlátja, mivel az "
+"semmi módot nem ad\n"
+"   arra, hogy a felfüggesztõ-billentyû megmaradhasson, így azt egy kill(0, "
+"SIGSTOP)\n"
+"   paranccsal kell emulálni.\n"

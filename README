@@ -1,0 +1,307 @@
+README for lpe, version 1.2.6
+Copyright (c) 1999 Chris Smith
+
+Lpe stands for "lightweight programmer's editor", and is exactly that.  It is
+designed to provide at the same time all the features that might be required in
+a decent code editor and a light, intuitive feel that makes it a pleasure to
+work with, making all necessary commands accessible as easily as possible.
+
+Lpe is licensed under the GPL, version 2 or at your option any later version
+and yada yada yada.
+
+NOTES ON VERSIONING
+
+As of version 1.2, lpe has adopted a versioning system like that of the Linux
+kernel.  The entire 1.2 series of releases will be stable releases.  All of
+1.3 will be development releases, and will happen at the same time as the
+1.2 series.  This allows me to fix bugs in a stable release without the need to
+direct people to use a development release -- which may introduce quite a few
+new bugs.
+
+BUILDING
+
+Lpe uses the GNU autoconf system to automate installation on a variety of UNIX
+or UNIX-like platforms.  See the file INSTALL for details on installing lpe.
+Several options accepted by lpe's configure script in addition to those that
+are normally accepted by configure.  These additional options are:
+
+--with-modes=<list>
+	install all modes in <list>, where <list> is a comma-separated list of
+	modes.  For example: --with-modes=c,cpp,html
+
+--enable-flash-brace=x
+	Flash braces for x tenths of a second.
+
+--disable-flash-brace
+	Don't flash braces at all.
+
+--disable-syntax-highlighting
+	Don't do any syntax highlighting in any modes.
+
+--disable-auto-indent
+	Don't automatically indent buffers (or even provide the option)
+
+--enable-ext-indent
+	Do mode-specific "intelligent" automatic indents (only in cmode now)
+
+--disable-macro-recorder
+	Don't include the macro recorder
+
+--disable-stream-manip
+	Don't include stream manipulation commands to integrate will shell
+	scripts, sed, or awk.
+
+--disable-help
+	Don't offer a help screen, which enlarges the binary by about 4K.
+
+Lpe's configure script will also accept standard GNU autoconf options.  Most of
+the interesting ones are described in the accompanying INSTALL file, which
+documents using the autoconf build system in greater detail.
+
+BUILDING WITHOUT ROOT
+
+It is possible to build lpe without root access to a system, as a replacement
+for the editors provided by the system administrator.  To do this, you should
+install and build both S-Lang (if it is not already installed on the system)
+and lpe in your home directory.  Follow the following steps:
+
+1. If your system administrator has not installed the S-Lang library, build and
+install the S-Lang library in your home directory as per the documentation that
+ comes with the library.
+
+2. Set up a proper development environment in your home directory by editing
+your shell's startup script to set the following environment variables:
+
+	CPPFLAGS =        -I${HOME}/include
+	LDFLAGS =         -L${HOME}/lib
+	PATH =            ${HOME}/bin:${PATH}
+	LD_LIBRARY_PATH = ${HOME}/lib:${LD_LIBRARY_PATH}
+
+Please change the name of the last environment variable to fit the conventions
+on the op[erating system in use.  The variable name used should be documented
+by your system's dynamic linker.
+
+3. Configure lpe with the --prefix=${HOME} flag to prevent it from installing
+in the default location.
+
+With these steps taken, lpe should be installable from a non-root environment.
+
+RUNNING
+
+To run lpe, type:
+
+% lpe <fname>
+
+Where <fname> is the name of the file you want to edit.  Lpe will not start
+without a file name.  If the file doesn't exist, it will be created.  Now, you
+can just type, just like you can in every other text editor.  Here's the
+supported commands and special keys:
+
+Ctrl-R           -- Scroll one screen up (alternative to PgUp)
+Ctrl-T           -- Scroll one screen down (alternative to PgDn)
+Ctrl-O           -- Move to the next word
+Ctrl-P           -- Move to the previous word
+
+Ctrl-K           -- Kill the current line
+Ctrl-Y or Ctrl-U -- Insert the most recent block of killed lines
+Ctrl-S           -- Search for a specified string in the file
+Ctrl-A           -- Search again for the last search query
+
+Ctrl-F Ctrl-O    -- Open a new file to replace the current buffer
+Ctrl-F Ctrl-S    -- Save the buffer to disk
+Ctrl-F Ctrl-A    -- Save to disk with an alternate file name
+Ctrl-F Ctrl-R    -- Read a file and insert it at the current cursor position
+Ctrl-F Ctrl-E    -- Pretend that a buffer hasn't been modified
+
+Ctrl-B Ctrl-S    -- Set the mode of the current buffer
+Ctrl-B Ctrl-T    -- Toggle between hard and soft tabs for this buffer
+Ctrl-B Ctrl-A    -- Toggle automatic indentation of this buffer
+
+Ctrl-G Ctrl-Q    -- Move cursor to beginning of line (alternative to Home)
+Ctrl-G Ctrl-W    -- Move cursor to end of line (alternative to End)
+Ctrl-G Ctrl-A    -- Go to the first line of the buffer
+Ctrl-G Ctrl-S    -- Go to the last line of the buffer
+Ctrl-G Ctrl-G    -- Go to a specific line number of the buffer
+
+Ctrl-N Ctrl-R    -- Enter a value for the command repeater
+Ctrl-N Ctrl-T    -- Multiply the command repeater value by four
+Ctrl-N Ctrl-O    -- Start or stop recording a macro
+Ctrl-N Ctrl-P    -- Play back the last recorded macro
+
+Ctrl-V Ctrl-V    -- Pass the entire buffer through a shell command
+Ctrl-V Ctrl-A    -- Pass the entire buffer through an awk script
+Ctrl-V Ctrl-S    -- Pass the entire buffer through a sed script
+Ctrl-V Ctrl-B    -- Pass several lines of the buffer through a shell command
+Ctrl-V Ctrl-D    -- Pass several lines of the buffer through an awk script
+Ctrl-V Ctrl-F    -- Pass several lines of the buffer through a sed script
+
+Ctrl-D           -- Perform an internal debug command
+
+Ctrl-E           -- Get a help screen to list these key bindings
+Ctrl-X           -- Write the buffer to disk and exit
+<interrupt>      -- Exit without writing to disk
+Ctrl-Z           -- Suspend the editor and escape to a prompt
+Ctrl-L           -- Erase and redraw the entire screen
+
+Notes:
+1. <interrupt> means your default terminal interrupt key, which is normally
+   set to Ctrl-C.
+
+2. Ctrl-Z is used to abort and suspend the editor.  This is completely
+   independent of the suspend key defined for your terminal.  Sorry about this,
+   but it appears to be a limitation of the screen management library (S-Lang)
+   that I use, which provides no option to preserve the suspend key, so I have
+   to emulate it with kill(getpid(), SIGSTOP).
+
+MODES
+
+Lpe supports several languages through its support of modes.  Modes are used to
+provide certain editor extensions, such as brace flashing or syntax
+highlighting, that are appropriate to the file being edited.  Modes are named,
+and you can specify a mode using the '--mode' command line option.  If you do
+not, then a mode will be auto-detected at the startup of the editor.  The
+currently supported modes are as follows:
+
+genmode:  a generic, nothing-in-particular mode
+cmode:    a C source file
+cppmode:  a C++ source file
+perlmode: a Perl source file
+javamode: a Java source file
+htmlmode: an HTML document
+sgmlmode: an SGML document
+mailmode: a classical UNIX-style mailbox file
+lispmode: a lisp/scheme/rep source file
+
+PLATFORM NOTES
+
+* Debian GNU/Linux    1.3, 2.0, 2.1, 2.2, woody, sid
+
+    Lpe should build and install well on Debian, as Debian is used as a test
+    platform. DEB format binaries are available
+
+* RedHat Linux        5.2
+
+    Although I don't test lpe on RedHat, it is commonly used there and I expect
+    it to work fine.  The RPM binaries work on RedHat (of course).
+
+* FreeBSD             2.2.7, 4.3
+
+    Lpe is now in the ports collection for FreeBSD.  The FreeBSD people have
+    been *extremely* good about picking up quickly on new versions as well, so
+    the ports collection should be up to date and is the preferred way to use
+    lpe on FreeBSD.
+
+* SUSE Linux          versions unknown
+
+    The RPM binaries are reported to work fine on SUSE.  I have no reports yet
+    on the ability to build lpe from source using SUSE.
+
+* OpenBSD             2.4
+
+    I believe that lpe works fine on OpenBSD with no known issues.
+
+* NetBSD              1.5
+
+    Lpe works perfectly well on NetBSD.
+
+* Digital UNIX/OSF    V4.0 564 alpha
+
+    Lpe will build and run on Digital UNIX (all tested versions), but does need
+    the GNU development tools rather than the native versions.  The compiler
+    should not cause problems, but the native make tool will fail in odd ways
+    because of bugs in automake.
+
+* Linux/Sparc (RedHat and Debian, unknown versions)
+
+    These have been reported to work.  No details yet, though.
+
+* Solaris/Sparc       2.5, 2.5.1, 2.6, 2.7
+
+    You must configure lpe using the --with-included-gettext option or the
+    --disable-nls option, due to problems in the Solaris internationalization
+    suite.  See ABOUT-NLS for more information on what these options do.
+
+    I have reports that make will fail the first time that it is run, with an
+    error about libintl.a.  The work-around is to then invoke make a second
+    time, and it should build completely.  I suspect that disabling NLS support
+    will also work around this issue, but I cannot be certain.
+
+* Windows NT          4.0 Cygwin b20.1
+
+    Lpe builds and runs on Cygwin with S-Lang installed, but shared library
+    problems prevent the modules from working properly.  As a result, lpe will
+    remain in genmode and provide no syntax highlighting or brace flashing.
+
+CREDITS
+
+Eckehard Berns <eb@berns.i-s-o.net>
+    - Auto-indentation feature
+    - German translation
+    - Perl and SGML language modules
+    - Various assorted suggestions
+    - Autoconf feature
+
+Gergely Nagy <algernon@debian.org>
+    - Config file
+    - LISP language module
+    - Hungarian translation
+    - Makefile.am and configure.in hacks
+    - various patches here and there
+
+Brandon Stepler <stepler@naples.net>
+    - Multiple buffer support
+
+Vladimir Popov <mashgrad@elist.ru>
+    - version option on start
+    - various bug reports, lots of other help and suggestions
+    - Russian translation
+
+Danial Koepke <dkoepke@california.com>
+    - Home goes to non-whitespace char
+    - cmode extended mode_indent
+
+Boris Wedl <boris.wedl@kfunigraz.ac.at>
+    - Minibuf tab completion
+
+Stanislav Grozev <tacho@orbitel.bg>
+    - OpenBSD port and bug reports
+    - Bulgarian translation
+
+Jim Foltz <aa204@acorn.net>
+    - Find next command
+    - Bug reports
+
+Graeme Cross <gcross@netspace.net.au>
+    - FreeBSD port, fix for RedHat 5.2 build
+
+Ron S. <phaeton@clubi.net>
+    - Solaris port
+
+Eric Crampton <crames@aur.alcatel.com>
+    - WinNT port
+
+Manuel Cornes <manuel.cornes@lipha.fr>
+    - French translation
+
+Piotr Klaban <makler@man.torun.pl>
+    - Polish translation
+
+Michal Safranek <wayne@linuxfreak.com>
+    - Czech translation
+
+Paco Brufal <pbrufal@phucksys.dhis.org>
+    - Spanish translation
+
+Dzogchen Community <b@scil.npi.msu.su>
+    - bug fix for Makefile
+
+Kevin Miller <sar@403forbidden.net>
+    - Suggestions on syntax highlighting for C
+
+CONTACT
+
+Author:        Chris Smith
+E-mail:        cd_smith@ou.edu
+UNIX talk:     cdsmith@walker1-46.reshall.ou.edu
+ICQ:           20495216
+Phone (in US): (405) 325-5296

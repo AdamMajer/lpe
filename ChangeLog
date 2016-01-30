@@ -1,0 +1,159 @@
+2000-07-22 Gergely Nagy <algernon@madhouse.lonyay.edu.hu>
+
+	* (src/cfg-core.c):
+		+ cfg_core_get_str returns a g_strdup ( ... )
+		thingy, so it can be freed up
+	* release: lpe-1.2.4-mhp-2CVS
+
+2000-07-21 Gergely Nagy <algernon@madhouse.lonyay.edu.hu>
+
+	* (src/cfg-core.[ch]):
+		+ new files that contain the internal configuration
+		database handling functions
+	* (src/cfg.c):
+		+ rewritten to be a simple wrapper around cfg-core
+	* (src/exports.[ch]):
+		+ the SLang connection
+	* (data/init.sl.in):
+		+ removed configuration handling, it is handled by
+		cfg-core now
+	* (data/conv.sl):
+		+ removed lpe_set_mode_option, obsoleted by cfg-core
+		+ removed lpe_save_settings for a while
+		+ rewrote lpe_save_option to use new interface
+	* (src/options.h):
+		+ config options reverted to defines
+	* (src/screen.c), (src/input.c), (src/lpecomm.c),
+	  (src/buffer.c), (src/screen.c), (src/help.c):
+		+ get HARD_TAB_WIDTH & co via cfg_get_global_option
+	* (src/mode-utils.c):
+		+ fix a potential segfault
+	* (CUSTOMIZE):
+		+ updated a bit, still needs a revisit
+	* (src/*.c):
+		+ ran thourgh indent -kr -bl -cli4 -fca -pcs -psl -sl -ss
+		-bli0
+	* (src/Makefile.am):
+		+ reorganized lpe_SOURCES
+
+2000-07-20 Gergely Nagy <algernon@madhouse.lonyay.edu.hu>
+
+	* (src/mode-utils.c):
+		+ rewritten mode_util_accept_on_request. this one
+		is more flexible, but may accept things it shouldn't.
+		However, that will probably be rare, if it ever occurs...
+	* (data/comp.c):
+		+ a program used to byte-compile slang sources, not installed
+	* (src/mode/perlmode.c):
+		+ fully ported to use mode_util_set_slang_color
+	* (src/options.h):
+		+ added LPE_CONFIG_FILE
+	* (src/cfg.c):
+		+ make LPE_CONFIG_FILE an intrinsic variable
+	* (src/lpe.c):
+		+ better command line parsing, now accepts some sort
+		paramaters
+		+ added --rcfile, -F [file] to be able to use
+		a different configuration file
+	* (data/init.sl.in):
+		+ modified to use LPE_CONFIG_FILE
+
+2000-07-19 Gergely Nagy <algernon@madhouse.lonyay.edu.hu>
+
+	* (src/mode-utils.[ch]):
+		+ removed mode_util_get_option_* functions, they
+		are moved to cfg.[ch]. only a few really mode specific
+		wrappers were left in
+		+ added mode_util_set_slang_color function
+		+ added a "transparent" color, so when modes set their
+		colors with mode_util_set_slang_color, the "transparent"
+		color will be replaced by NULL, so on a transparent Eterm,
+		lpe can be transparent too.
+	* (src/cfg.[ch]):
+		+ new files to hold the configuration handling
+		+ basically moved from mode-utils.[ch], but
+		made it a little bit better
+		+ made i_cfg_reset intrinsic
+	* (src/modes/lispmode.c), (src/modes/cmode.c),
+	  (src/modes/cppmode.c), (src/modes/javamode.c),
+	  (src/modes/htmlmode.c), (src/modes/sgmlmode.c):
+	  	+ fully ported to use mode_util_set_slang_color
+	* (src/input.[ch]):
+		+ added LPE_SLANG_KEY and key_slang, a function to
+		execute a slang command
+	* (src/help.c):
+		+ #include <stdlib.h>, for free and realloc
+		+ do not include <libintl.h>, i18n.h does it for us
+	* (src/lpecomm.c):
+		+ removed unused variables
+	* (src/buffer.c):
+		+ fixed a minor bug
+	* (src/lpe.c):
+		+ made some things conditional, so it will compile with
+		-pedantic -ansi (gcc)
+	* (data/init.sl.in):
+		+ moved some of it to conv.sl
+		+ load conv.sl before the per-user file
+	* (data/conv.sl):
+		+ convenience functions
+	* (data/custom.ex):
+		+ an example ~/.lpe/custom file
+	* (data/Makefile.am):
+		+ modified to reflect above changes
+
+2000-07-18 Gergely Nagy <algernon@madhouse.lonyay.edu.hu>
+
+	* (src/mode-utils.[ch]):
+		+ added new SLang based option handling functions
+	* (src/modes/lispmode.c), (src/modes/cmode.c),
+	  (src/modes/cppmode.c), (src/modes/javamode.c),
+	  (src/genmode.c):
+		+ ported to use mode_util_get_option_* functions
+	* (src/modes/htmlmode.c), (src/modes/mailmode.c),
+	  (src/modes/perlmode.c), (src/modes/sgmlmode.c):
+	  	+ partially ported to use mode_util_get_option_*
+	* (src/dotfile.[ch]):
+		+ removed. mode_util_get_option_* is much better
+	* (src/Makefile.am):
+		+ modified to reflect dotfile.[ch] removal
+	* (src/lpe.c):
+		+ added mode_util_init call
+		+ removed dependancy on dotfile.[ch]
+	* (src/input.c):
+		+ use mode_get_option to get the shell/awk/sed commands
+	* (CUSTOMIZE):
+		+ updated, because I drastically changed the config
+		file syntax, and added a bunch of configurable things
+	* (TODO):
+		+ removed brace-flash time from the not-configurable
+		list, together with shell/awk/sed commands and module path
+	* (src/options.h):
+		+ removed DEF_CONFIG_PATH, it is not used anymore
+		+ made a few defines global variables, so they can
+		be set by mode_util_reset (needed to avoid calling
+		SLang functions too often, because that resulted in
+		Stack Frame Overlfows)
+	* (src/buffer.c), (src/minibuf.c):
+		+ use mode_get_option to get DEF_MODULE_PATH
+	* (src/messages.h):
+		+ replaced by i18n.h
+	* (src/i18n.h):
+		+ a better version of gettext wrapper
+	* (data/Makefile.am):
+		+ new file
+	* (data/init.sl.in):
+		+ input for the init.sl initscript (called by mode_util_init)
+	* (Makefile.am):
+		+ added cvs-dist target
+	* (autogen.sh):
+		+ needed to build from cvs-dist generated distribution
+
+2000-07-17 Gergely Nagy <algernon@madhouse.lonyay.edu.hu>
+
+	* (src/modes/lispmode.c):
+		+ all backgrounds set to 0, so it looks good on
+		my transparent Eterm
+
+2000-07-15 Gergely Nagy <algernon@madhouse.lonyay.edu.hu>
+
+	* Started changelog

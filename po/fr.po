@@ -1,0 +1,293 @@
+# translation of fr.po to 
+# French translation of lpe.
+# Copyright (C) 2004, 2005 Free Software Foundation, Inc.
+# Jean-Luc Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>, 2004, 2005.
+#
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: fr\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2001-06-20 12:19+0200\n"
+"PO-Revision-Date: 2005-02-27 11:50+0100\n"
+"Last-Translator: Jean-Luc Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
+"Language-Team:  French <debian-l10n-french@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+
+#. This is just as much an overflow as running out of keys
+#: src/input.c:105 src/input.c:2348
+msgid "Macro overflow"
+msgstr "Débordement de la macro"
+
+#: src/input.c:889 src/input.c:955 src/input.c:1056 src/input.c:1268
+msgid "file: "
+msgstr "fichier : "
+
+#: src/input.c:903 src/input.c:926
+msgid "File saved successfully"
+msgstr "Fichier enregistré avec succès"
+
+#: src/input.c:946
+msgid "Current buffer modified"
+msgstr "Tampon actuel modifié"
+
+#: src/input.c:1134
+msgid "search term: "
+msgstr "mot à rechercher : "
+
+#: src/input.c:1172
+msgid "Found"
+msgstr "Trouvé"
+
+#: src/input.c:1182
+msgid "Not found"
+msgstr "Introuvable"
+
+#: src/input.c:1198
+msgid "line: "
+msgstr "ligne : "
+
+#: src/input.c:1442
+msgid "Using soft tabs"
+msgstr "Utilisation des tabulations logicielles"
+
+#: src/input.c:1446
+msgid "Using hard tabs"
+msgstr "Utilisation des tabulations matérielles"
+
+#: src/input.c:1518
+msgid "Mismatched braces"
+msgstr "Parenthèses non équilibrées"
+
+#: src/input.c:1560
+msgid "Autoindent off"
+msgstr "Indentation automatique inactive"
+
+#: src/input.c:1564
+msgid "Autoindent on"
+msgstr "Indentation automatique active"
+
+#: src/input.c:1574
+msgid "count: "
+msgstr "nombre : "
+
+#: src/input.c:1608
+msgid "Macro recorder off"
+msgstr "Enregistreur de macro arrêté"
+
+#: src/input.c:1614
+msgid "Macro recorder on"
+msgstr "Enregistreur de macro démarré"
+
+#: src/input.c:1648
+msgid "mode: "
+msgstr "mode : "
+
+#: src/input.c:1804 src/input.c:1950
+msgid "shell: "
+msgstr "commande : "
+
+#: src/input.c:1814 src/input.c:1854 src/input.c:1895 src/input.c:1960
+#: src/input.c:2049 src/input.c:2138
+msgid "Command failed"
+msgstr "La commande a échoué"
+
+#: src/input.c:1844 src/input.c:2039
+msgid "awk: "
+msgstr "awk : "
+
+#: src/input.c:1885 src/input.c:2128
+msgid "sed: "
+msgstr "sed : "
+
+#: src/input.c:2231
+msgid "debug: "
+msgstr "débogage : "
+
+#: src/input.c:2246
+msgid "Unknown debug request"
+msgstr "Requête de débogage inconnue"
+
+#: src/input.c:2258
+msgid "command: "
+msgstr "commande : "
+
+#: src/lpe.c:108
+#, c-format
+msgid "%s version %s\n"
+msgstr "%s version %s\n"
+
+#: src/lpe.c:116
+msgid ""
+"The lpe text editor is dedicated to all those who died at\n"
+"Columbine High School in Littleton, CO, USA on April 20, 1999.\n"
+"We will always remember you.\n"
+msgstr ""
+"L'éditeur de texte lpe est dédié à tous ceux qui sont morts à\n"
+"la « Columbine·High·School » à Littleton, CO, USA, le 20 avril 1999.\n"
+"Vous resterez à jamais dans notre mémoire.\n"
+
+#: src/lpe.c:131
+#, c-format
+msgid "error in option: %s\n"
+msgstr "option incorrecte : %s\n"
+
+#: src/lpe.c:134
+msgid ""
+"usage:\t'lpe [--mode mode] [--] file'\topens file for editing\n"
+"      \t'lpe --version'              \tprints version number\n"
+"      \t'lpe --help'                 \tprints this help message\n"
+msgstr ""
+"usage : « lpe [--mode mode] [--] fichier »  ouvrir le fichier pour l'éditer\n"
+"        « lpe --version »                   afficher le numéro de version\n"
+"        « lpe --help »                      afficher ce message d'aide\n"
+
+#: src/screen.c:178
+msgid "Ctrl-E for Help"
+msgstr "Ctrl-E pour l'aide"
+
+#: src/help.c:123
+msgid ""
+"Lpe: The Lightweight Programmer's Editor\n"
+"Help Screen\n"
+"\n"
+"Ctrl-Q           -- Move cursor to beginning of line (alternative to Home)\n"
+"Ctrl-W           -- Move cursor to end of line (alternative to End)\n"
+"Ctrl-R           -- Scroll one screen up (alternative to PgUp)\n"
+"Ctrl-T           -- Scroll one screen down (alternative to PgDn)\n"
+"Ctrl-O           -- Move to the next word\n"
+"Ctrl-P           -- Move to the previous word\n"
+"\n"
+"Ctrl-K           -- Kill the current line\n"
+"Ctrl-Y or Ctrl-U -- Insert the most recent block of killed lines\n"
+"Ctrl-S           -- Search for a specified string in the file\n"
+"Ctrl-A           -- Search again for the last search query\n"
+"\n"
+"Ctrl-F Ctrl-O    -- Open a new file to replace the current buffer\n"
+"Ctrl-F Ctrl-S    -- Save the buffer to disk\n"
+"Ctrl-F Ctrl-A    -- Save to disk with an alternate file name\n"
+"Ctrl-F Ctrl-R    -- Read a file and insert it at the current cursor "
+"position\n"
+"Ctrl-F Ctrl-E    -- Pretend that a buffer hasn't been modified\n"
+"Ctrl-F Ctrl-X    -- Next buffer\n"
+"Ctrl-F Ctrl-Z    -- Previous buffer\n"
+"Ctrl-F Ctrl-N    -- Open a new buffer from a file\n"
+"Ctrl-F Ctrl-L    -- Close current buffer\n"
+"\n"
+"Ctrl-B Ctrl-S    -- Set the mode of the current buffer\n"
+"Ctrl-B Ctrl-T    -- Toggle between hard and soft tabs for this buffer\n"
+"Ctrl-B Ctrl-A    -- Toggle automatic indentation of this buffer\n"
+"\n"
+"Ctrl-G Ctrl-A    -- Go to the first line of the buffer\n"
+"Ctrl-G Ctrl-S    -- Go to the last line of the buffer\n"
+"Ctrl-G Ctrl-G    -- Go to a specific line number of the buffer\n"
+"\n"
+"Ctrl-N Ctrl-R    -- Enter a value for the command repeater\n"
+"Ctrl-N Ctrl-T    -- Multiply the command repeater value by four\n"
+"Ctrl-N Ctrl-O    -- Start or stop recording a macro\n"
+"Ctrl-N Ctrl-P    -- Play back the last recorded macro\n"
+"\n"
+"Ctrl-V Ctrl-V    -- Pass the entire buffer through a shell command\n"
+"Ctrl-V Ctrl-A    -- Pass the entire buffer through an awk script\n"
+"Ctrl-V Ctrl-S    -- Pass the entire buffer through a sed script\n"
+"Ctrl-V Ctrl-B    -- Pass several lines of the buffer through a shell "
+"command\n"
+"Ctrl-V Ctrl-D    -- Pass several lines of the buffer through an awk script\n"
+"Ctrl-V Ctrl-F    -- Pass several lines of the buffer through a sed script\n"
+"\n"
+"Ctrl-D Ctrl-D    -- Perform an internal debug command\n"
+"Ctrl-D Ctrl-S    -- Execute a SLang command\n"
+"\n"
+"Ctrl-X           -- Write ALL buffers to disk and exit\n"
+"<interrupt>      -- Exit without writing to disk\n"
+"Ctrl-Z           -- Suspend the editor and escape to a prompt\n"
+"Ctrl-L           -- Erase and redraw the entire screen\n"
+"\n"
+"Notes:\n"
+"1. <interrupt> means your default terminal interrupt key, which is normally\n"
+"   set to Ctrl-C.\n"
+"\n"
+"2. Ctrl-Z is used to abort and suspend the editor.  This is completely\n"
+"   independent of the suspend key defined for your terminal.  Sorry about "
+"this,\n"
+"   but it appears to be a limitation of the screen management library (S-"
+"Lang)\n"
+"   that I use, which provides no option to preserve the suspend key, so I "
+"have\n"
+"   to emulate it with kill(0, SIGSTOP).\n"
+msgstr ""
+"Lpe : Éditeur léger pour le programmeur (« Lightweight Programmer's Editor »)\n"
+"Écran d'aide\n"
+"\n"
+"Ctrl-Q           -- Déplacer le curseur au début de la ligne\n"
+"                    (identique à Home)\n"
+"Ctrl-W           -- Déplacer le curseur à la fin de la ligne\n"
+"                    (identique à Fin)\n"
+"Ctrl-R           -- Défiler d'un écran vers le Haut (identique à PgPréc)\n"
+"Ctrl-T           -- Défiler d'un écran vers le bas (identique à PgSuiv)\n"
+"Ctrl-O           -- Déplacer le curseur au mot suivant\n"
+"Ctrl-P           -- Déplacer le curseur au mot précédent\n"
+"\n"
+"Ctrl-K           -- Effacer la ligne actuelle\n"
+"Ctrl-Y ou Ctrl-U -- Insérer le bloc le plus récent de lignes effacées\n"
+"Ctrl-S           -- Rechercher une chaîne particulière dans le fichier\n"
+"Ctrl-A           -- Poursuivre la recherche selon le même critère\n"
+"\n"
+"Ctrl-F Ctrl-O    -- Ouvrir un nouveau fichier pour remplacer le tampon "
+"actuel\n"
+"Ctrl-F Ctrl-S    -- Enregistrer le tampon sur le disque\n"
+"Ctrl-F Ctrl-A    -- Enregistrer sur le disque avec un nouveau nom\n"
+"Ctrl-F Ctrl-R    -- Lire un fichier et l'insérer à la position du curseur\n"
+"Ctrl-F Ctrl-E    -- Forcer l'état modifié d'un tampon\n"
+"Ctrl-F Ctrl-X    -- Tampon suivant\n"
+"Ctrl-F Ctrl-Z    -- Tampon précédent\n"
+"Ctrl-F Ctrl-N    -- Ouvrir un nouveau tampon depuis un fichier\n"
+"Ctrl-F Ctrl-L    -- Fermer le tampon actuel\n"
+"\n"
+"Ctrl-B Ctrl-S    -- Déterminer le mode du tampon actuel\n"
+"Ctrl-B Ctrl-T    -- Basculer entre tabulations matérielles et logicielles\n"
+"                    pour ce tampon\n"
+"Ctrl-B Ctrl-A    -- Changer le mode d'indentation automatique pour ce "
+"tampon\n"
+"\n"
+"Ctrl-G Ctrl-A    -- Aller à la première ligne du tampon\n"
+"Ctrl-G Ctrl-S    -- Aller à la dernière ligne du tampon\n"
+"Ctrl-G Ctrl-G    -- Aller à une ligne particulière de ce tampon\n"
+"\n"
+"Ctrl-N Ctrl-R    -- Entrer un nombre pour la répétition des commandes\n"
+"Ctrl-N Ctrl-T    -- Multiplier la répétition des commandes par quatre\n"
+"Ctrl-N Ctrl-O    -- Démarrer / Arrêter l'enregistrement d'une macro\n"
+"Ctrl-N Ctrl-P    -- Rejouer la dernière macro\n"
+"\n"
+"Ctrl-V Ctrl-V    -- Passer tout le tampon à l'interpréteur de commandes\n"
+"Ctrl-V Ctrl-A    -- Passer tout le tampon à un script awk\n"
+"Ctrl-V Ctrl-S    -- Passer tout le tampon à un script sed\n"
+"Ctrl-V Ctrl-B    -- Passer certaines lignes du tampon à l'interpréteur\n"
+"i                   de commandes\n"
+"Ctrl-V Ctrl-D    -- Passer certaines lignes du tampon à un script awk\n"
+"Ctrl-V Ctrl-F    -- Passer certaines lignes du tampon à un script sed\n"
+"\n"
+"Ctrl-D Ctrl-D    -- Lancer une commande de débogage interne\n"
+"Ctrl-D Ctrl-S    -- Exécuter une commande SLang\n"
+"\n"
+"Ctrl-X           -- Écrire TOUS les tampons sur le disque et quitter\n"
+"<interrupt>      -- Quitter sans écrire les tampons\n"
+"Ctrl-Z           -- Suspendre l'éditeur et retourner à l'invite de\n"
+"                    l'interpréteur de commandes\n"
+"Ctrl-L           -- Effacer et redessiner l'écran\n"
+"\n"
+"Notes :\n"
+"1. <interrupt> indique la touche d'interruption par défaut de votre terminal\n"
+"   qui est normalement Ctrl-C.\n"
+"\n"
+"2. Ctrl-Z est utilisé pour quitter ou interrompre l'éditeur. C'est\n"
+"   entièrement indépendant de la touche « suspend » de votre terminal.\n"
+"   Désolé mais c'est une limitation de la bibliothèque de gestion d'écran\n"
+"   (S-Lang) qui est utilisée pour la réalisation de cet éditeur. Elle ne\n"
+"   fournit aucune option pour protéger la touche « suspend » il a donc fallu\n"
+"   l'émuler avec kill(0, SIGSTOP).\n"
+

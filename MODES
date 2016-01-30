@@ -1,0 +1,217 @@
+Mode Module Specification for Lpe
+
+This document specifies the requirements for writing a language module for
+lpe.  These modules specify the behavior of lpe when working with different
+specific languages.
+
+The module format is the shared library format for the host system.  Modules
+can modify the behavior of lpe be exporting one or more of the following
+functions:
+
+	mode_accept:     automatically detect when to use this module
+	mode_init:       initialize a buffer using this module
+	mode_uninit:     clean up module-specific parts of the buffer
+	mode_enter:      prepare to switch to this module
+	mode_leave:      prepare to switch away from this module
+	mode_flashbrace: flash braces
+	mode_highlight:  do syntax highlighting
+	mode_indent:     perform custom auto-indentation
+	mode_extkey:     handle a module-specific key binding
+
+All of these functions are optional -- a module may export whichever of them it
+desires, providing it adheres to the guidelines for good module behavior (later
+in this document).  The next sections describe the role of each function and
+how to write it in greater detail.
+
+** mode_accept ****************************************************************
+
+Automatically detects when to use this module.  If this function is exported,
+then lpe will call it in an attempt to discover a mode for a newly opened file.
+When opening a file for which it does not know the appropriate mode, lpe scans
+all installed modules and calls mode_accept until one of them accepts the mode.
+If this function is not exported, then this mode will never be automatically
+selected -- it will only be used if explicitly requested but the user.
+
+Parameters:
+	buf - the buffer.  All elements are guaranteed to be initialized except
+	      for buf->mode and any values that mode_init must set.
+
+Return Value:
+
+	0        - do not use this module to open the file
+	non-zero - use this module to open the file
+
+Hints:
+
+* Generally speaking, modes should accept based on a filename suffix, which can
+be checked by looking at buf->name, or the contents of the first line of a
+file, which are available in buf->text.  For examples, look at perlmode, which
+checks both the suffix and the first line when deciding whether to accept.
+
+* Do not perform any initialization in mode_accept.  If the user specifies a
+mode explicitly, mode_accept will not be called; not even for the mode that was
+specified.  Initialization should be performed in mode_init instead.
+
+** mode_init ******************************************************************
+
+Initializes a buffer.  If this function is exported, lpe will call it when a
+buffer is opened using this mode, or when this mode is set on a buffer that is
+already open.  Among other setup tasks, mode_init should initialize several
+attributes of the buffer: hardtab, autoindent, flashbrace, offerhelp,
+highlight, and mode_name.  The initial values for these variables can be read
+from the dotfile via a call to get_option.
+
+Parameters:
+	buf - the buffer
+
+Hints:
+
+* All modes should, generally speaking, export mode_init to perform at least
+the setup tasks mentioned above.  If that doesn't happen, a very basic default
+configuration will be provided, and the user won't see the mode name on the
+status bar.
+
+* buf->mode.data is reserved specifically for modules to use in associating new
+attributes with a buffer.  It can be cast to an appropriate value and used to
+store information, or it can be used to point to an extended attributes struct
+allocated by malloc in mode_init.  In the latter case, mode_uninit can be used
+to free the memory allocated in mode_init.
+
+* If the value of buf->mode_name is non-NULL at the call to mode_init, then the
+buffer has been opened under a different mode.  In this case, the buffer flags
+such as hardtab and autoindent should probably not be reset to default values,
+since the user may have explicitly set them while in the old mode.
+
+** mode_uninit ****************************************************************
+
+Cleans up module-specific parts of the buffer.  If exported, lpe will call
+mode_uninit when a buffer is closed, so that resources used by this module to
+manage the buffer can be freed.
+
+Parameters:
+	buf - the buffer
+
+Hints:
+
+* The most common use for mode_uninit will probably be to free(buf->mode.data)
+after allocating it in mode_init.  Any cleanup that should be performed when
+switching buffers, even if the old buffer is not closed, should be placed in
+mode_leave instead.
+
+* A call to mode_uninit does not guarantee that a buffer is being closed.  The
+user may have requested a different mode.  Therefore, the function should not
+perform destructive actions on the contents of the buffer.
+
+** mode_enter *****************************************************************
+
+Prepares to switch to this module.  If this function is exported, lpe will call
+it prior to switching to a buffer that uses this mode.  This provides an
+opportunity for the mode to set things up so that the new mode can be
+displayed.
+
+Parameters:
+	buf - the buffer
+
+Hints:
+
+* Primarily, mode_enter is used to do two things: set colors for syntax
+highlighting, and set module-specific key bindings.
+
+** mode_leave *****************************************************************
+
+Prepares to switch away from this module.  If this function is exported, lpe
+will call it just before switching away from a buffer using this module.
+
+Parameters:
+	buf - the buffer
+
+** mode_flashbrace ************************************************************
+
+Flashes braces according to the rules of the mode.  If the function is exported
+by the module, then it is called every time a character is pressed with the
+intent that if the character is considered a brace, then the module will flash
+the cursor temporarily back to its match.  The function should examine the
+buffer, and pass it back with the position set to the brace to flash to.
+
+Parameters:
+	buf - the buffer
+
+Return:
+	 0 = do not do any brace flashing
+	 1 = yes, flash the braces to the position set in this function
+	-1 = do not flash and print a warning about mismatched braces
+
+** mode_highlight *************************************************************
+
+Does syntax highlighting.  If the function is exported, then mode_highlight
+will be called as appropriate when drawing the screen.  See cmode.c for an
+example of how the parameters are used, and notice that the 'idx' and 'state'
+parameters are both input and output parameters.  They should be modified in
+place to reflect the amount of work done by that call and the ending state, so
+that the function can be called again and start in the right place.
+
+Parameters:
+	buf   - the buffer
+	ln    - the line needing to be highlighted
+	lnum  - line number of the highlighted line
+	idx   - index of the beginning of the text remaining to be written
+	        after call, index of the first character not yet handled
+	state - state information at index idx (-1 for unknown state)
+	        after call, state information at final value of idx
+
+Return Value:
+	Palette index of the text style to use in drawing processed text
+
+** mode_indent ****************************************************************
+
+Performs custom auto-indentation.  If exported, it is passed every keystroke so
+that it can update the indent if desired.
+
+Parameters:
+	buf   - the buffer
+	ch    - the character that was typed
+
+** mode_extkey ****************************************************************
+
+Handles a module-specific key binding.  If exported, this function is called
+every time a command is received that is not a standard lpe command.  The
+module can then use that command to perform special handling that makes sense
+for this buffer mode.  Modules can use this to add mode-specific commands to
+a buffer.
+
+Parameters:
+	buf - the buffer
+	c   - the command number that was received
+
+*******************************************************************************
+
+Guidelines for Good Module Behavior:
+
+1. Anything that is done in mode_init should be undone in mode_uninit.  For
+example, if mode_init allocates memory with malloc, mode_uninit should use free
+to release that memory.
+
+2. Anything that is done in mode_enter should be undone in mode_leave.  Since
+these functions are generally used to set palette entries and key bindings in
+S-Lang, mode_leave should typically call init_slang_keys to restore the default
+key bindings, and if necessary SLtt_set_color to restore palette entry 0 to a
+reasonable value.  Palette entries greater than 0 do not matter.
+
+3. Modules should remember that palette index 0 will be used to draw the banner
+and '$' scrolling markers as well as whatever they use it for in the drawing
+code.  Therefore, it shouldn't be set to anything that's too awfully
+extravagant.
+
+4. If a module implements syntax highlighting for a programming language, it
+should include highlight.h to get colors for many lexical elements.  Any
+extensions to those defaults should be placed in palette indexes greater than
+or equal to 64 so that highlight.h can be extended in the future without the
+risk of conflicts.
+
+5. Modules which perform custom key bindings should use values above 0x2000 to
+represent their bindings.  This prevents conflicts with standard key bindings
+as the standard bindings grow.
+
+6. Modes which create extra key bindings should use multi-key commands that
+begin with Ctrl-Q.  This ensures that these keys do not conflict with any
+standard key bindings.

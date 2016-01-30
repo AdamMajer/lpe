@@ -1,0 +1,113 @@
+.TH LPE 1 "12 December 1998"
+.SH NAME
+lpe \- Lightweight programmer's editor
+.SH SYNOPSIS
+\fBlpe\fP [ --help | --version ]
+.br
+\fBlpe\fP [ -- ] \fIfile\fP
+.SH DESCRIPTION
+\fBThis page needs to be translated into Bulgarian!!!\fP
+
+\fILpe\fP is a minimalist, visual, real-time text editor designed to make
+editing code easier without alienating its user from the shell.  It includes
+abilities to search files for plain text and block cut and paste, along with
+standard editing capabilities.  It takes some inspiration from emacs(1) and
+pico(1).
+.SS Options
+.TP
+\fB--help\fP
+Prints a brief description of program usage and terminates.  This must be the
+first option to \fBlpe\fP, and all other options are ignored.
+.TP
+\fB--version\fP
+Prints a message indication the program version and terminates.  This must be
+the first option to \fBlpe\fP, and all other options are ignored.
+.TP
+\fB--\fP
+Treat future arguments as file names, not options.  This allows lpe to be used
+to edit files starting with the \- character.
+.SH NOTES
+As mentioned above, lpe is designed as a minimalist editor, meant to be small
+and robust and efficient, but not to provide too many superfluous features.
+For this reason, it should not be difficult to learn to use lpe, provided that
+one is willing to invest effort to learn a few basic keys.
+.SS Command Keys
+.TP
+\fBUp\fP or \fBAlt-K\fP
+Go to previous line of text
+.TP
+\fBDown\fP or \fBAlt-J\fP
+Go to next line of text
+.TP
+\fBLeft\fP or \fBAlt-H\fP
+Move cursor left one column
+.TP
+\fBRight\fP or \fBAlt-L\fP
+Move cursor right one column
+.TP
+\fBHome\fP or \fBAlt-0\fP
+Move cursor to beginning of line
+.TP
+\fBEnd\fP or \fBAlt-$\fP
+Move cursor to end of line
+.TP
+\fBPageUp\fP or \fBAlt-B\fP
+Scroll one screen up
+.TP
+\fBPageDn\fP or \fBAlt-F\fP
+Scroll one screen down
+.TP
+\fBAlt-A\fP
+Move cursor to beginning of buffer
+.TP
+\fBAlt-S\fP
+Move cursor to end of buffer
+.TP
+\fBCtrl-S\fP
+Search for a specified string in the file
+.TP
+\fBCtrl-K\fP
+Kill the current line
+.TP
+\fBCtrl-Y\fP or \fBCtrl-U\fP
+Insert the most recent block of killed lines
+.TP
+\fBCtrl-T\fP
+Toggle between hard and soft tab characters
+.TP
+\fBCtrl-O\fP
+Open a new file within the editor
+.TP
+\fBCtrl-W\fP
+Write the buffer to disk
+.TP
+\fBCtrl-Q\fP
+Save to an alternate file
+.TP
+\fBCtrl-E\fP
+Forget modifications to the buffer
+.TP
+\fBCtrl-X\fP
+Write the buffer to disk and exit
+.TP
+\fBCtrl-D\fP
+Perform an internal debug command
+.TP
+\fB<interrupt>\fP
+Exit without writing to disk
+.TP
+\fBCtrl-Z\fP
+Suspend the editor and escape to a prompt
+
+\fB<interrupt>\fP refers to your terminal's interrupt key.  This is often
+Ctrl-C, but can vary between terminals.  Ctrl-Z, on the other hand, is fixed,
+regardless of the normal stop key for your terminal.
+
+.SH "SEE ALSO"
+emacs(1), pico(1)
+.SH AUTHOR
+Chris Smith, cd_smith@ou.edu
+.SH BUGS
+Lots of 'em -- see the BUGS file in the distribution for a partial list.  I am
+not planning on updating this man page often enough to keep up with the bug
+list, so I won't even try to list bugs here.

@@ -1,0 +1,116 @@
+.TH LPE 1 "12 Décembre 1998"
+.SH NOM
+lpe \- Lightweight programmer's editor (Éditeur de texte léger pour programmeurs)
+.SH SYNOPSIS
+\fBlpe\fP [ --help | --version ]
+.br
+\fBlpe\fP [ -- ] \fIfile\fP
+.SH DESCRIPTION
+\fILpe\fP est un éditeur de texte temps réel, minimaliste, visuel, conçu
+pour faciliter l'édition de code sans isoler les utilisateurs du shell.
+Il permet la recherche de texte simple dans les fichiers, le couper-coller
+de blocs, ainsi que d'autres fonctionnalités standards.
+Il s'inspire un peu d'emacs(1) et pico(1).
+.SS Options
+.TP
+\fB--help\fP
+Affiche une brève description du programme et de son utilisation et
+rend le contrôle au shell. Cela doit être la première opiton passée à
+\fBlpe\fP, toutes les autres options sont alors ignorées.
+.TP
+\fB--version\fP
+Affiche le numéro de version du programme et rend le contrôle au shell.
+Cela doit être la première opiton passée à \fBlpe\fP, toutes les autres
+options sont alors ignorées.
+.TP
+\fB--\fP
+Considère que les arguments suivants sont des noms de fichiers et non
+des options. Cela permet l'utilisation de lpe pour éditer des fichiers
+dont le nom commence avec le caractère \-.
+.SH NOTES
+Comme mentionné plus haut, lpe est un éditeur minimaliste, conçu pour
+être petit, robuste et efficace, non pour contenir des fonctionnalités
+superflues. Pour cette raison, apprendre à utiliser lpe n'est pas difficile
+si l'utilisateur est d'accord pour apprendre un petit nombre de raccourcis
+clavier.
+.SS Commandes clavier
+.TP
+\fBUp\fP ou \fBAlt-K\fP
+Aller sur la ligne précédente
+.TP
+\fBDown\fP ou \fBAlt-J\fP
+Aller sur la ligne suivante
+.TP
+\fBLeft\fP ou \fBAlt-H\fP
+Aller à gauche d'un caractère
+.TP
+\fBRight\fP ou \fBAlt-L\fP
+Aller à droite d'un caractère
+.TP
+\fBHome\fP ou \fBAlt-0\fP
+Déplacer le curseur en début de ligne
+.TP
+\fBEnd\fP ou \fBAlt-$\fP
+Déplacer le curseur en fin de ligne
+.TP
+\fBPageUp\fP ou \fBAlt-B\fP
+Se déplacer d'un écran vers le haut
+.TP
+\fBPageDn\fP ou \fBAlt-F\fP
+Se déplacer d'un écran vers le bas
+.TP
+\fBAlt-A\fP
+Aller au début de fichier
+.TP
+\fBAlt-S\fP
+Aller en fin de fichier
+.TP
+\fBCtrl-S\fP
+Chercher une chaîne de caractère
+.TP
+\fBCtrl-K\fP
+Détruire la ligne courante
+.TP
+\fBCtrl-Y\fP ou \fBCtrl-U\fP
+Insérer le dernier bloc effacé
+.TP
+\fBCtrl-T\fP
+Changer la gestion des tabulations
+.TP
+\fBCtrl-O\fP
+Ouvrir un nouveau fichier depuis l'éditeur
+.TP
+\fBCtrl-W\fP
+Ecrire le fichier sur le disque
+.TP
+\fBCtrl-Q\fP
+Sauver sous un autre nom
+.TP
+\fBCtrl-E\fP
+Ignorer les modifications faites au fichier
+.TP
+\fBCtrl-X\fP
+Ecrire le fichier sur le disque et quitter
+.TP
+\fBCtrl-D\fP
+Executer une commande interne de debug
+.TP
+\fB<interrupt>\fP
+Sortir sans sauver le fichier
+.TP
+\fBCtrl-Z\fP
+Suspendre l'éditeur et ouvrir un shell
+
+\fB<interrupt>\fP désigne la touche d'interruption de votre terminal.
+C'est souvent la combinaison Ctrl-C, mais cela peut varier d'un terminal
+à l'autre. La combinaison Ctrl-Z est, par contre, fixée et ne dépend
+donc pas de votre terminal.
+.SH "VOIR AUSSI"
+emacs(1), pico(1)
+.SH AUTEUR
+Chris Smith, cd_smith@ou.edu
+.SH BUGS
+Il y en a des tas -- Lire le fichier BUGS dans les fichiers de la distribution
+pour une liste partielle. Je ne compte pas mettre à jour cette man page
+aussi souvent que la liste des bugs rencontrés, je ne vais donc même pas
+essayer de lister tous les problèmes ici.

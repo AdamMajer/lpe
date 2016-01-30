@@ -1,0 +1,31 @@
+IDEAS: List of possible changes or features in lpe
+
+These are particularly interesting ideas that I haven't yet decided to do.  If
+there is interest in any of them, I may move them into the TODO list and then
+implement them.
+
+-------------------------------------------------------------------------------
+
+- Multiple buffer support
+
+Allow the user to have multiple open buffers, which they can switch between
+using next and previous buffer commands.  Modify open to add a buffer to the
+list, and add a close command to close a single buffer, and a command to save
+and close a single buffer.  This won't be too difficult because I designed
+around this possibility.  I still have to decide if I want to do it though.
+
+- Regular expression search
+
+Just a thought, because S-Lang supports it, so it wouldn't be too difficult,
+nor would it require dependencies of some external regexp library.  Then again,
+I'll never use it, so this is a thought that will most likely recur only if
+someone asks me to do it.
+
+- Avoid the Tab/Backspace mismatch in soft tab mode
+
+Ways of doing this are all hacks, and I am hesitant to implement them.  Still,
+some people may want them to happen, and I can't ignore users completely. :)
+One idea might be a third tab mode that stores hard tabs while editing, but
+replaces the tabs with spaces before saving.  Then, when opening a file, any
+sequence of n spaces, where n is the soft tab width, would be replaced by a tab
+while editing.  That's messy, but accomplishes most of the goals.
