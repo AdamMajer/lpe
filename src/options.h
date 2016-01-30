@@ -27,7 +27,7 @@
 #define CMD_SH  "sh"
 #define CMD_AWK "awk"
 #define CMD_SED "sed"
-#define DEF_MODULE_PATH "~/.lpe:/usr/local/lib/lpe:/usr/lib/lpe:/etc/lpe"
+#define DEF_MODULE_PATH "~/.lpe:" PLUGINDIR "/lpe"
 #define DEF_HARD_TAB_WIDTH 8
 #define DEF_SOFT_TAB_WIDTH 4
 #define DEF_FLASH_TIME 3

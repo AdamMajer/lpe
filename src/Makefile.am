@@ -35,4 +35,6 @@ else
 AM_CPPFLAGS = -DLOCALEDIR=\"$(datadir)/locale\"
 endif
 
+AM_CPPFLAGS += -DPLUGINDIR=\"$(libdir)/lpe\"
+
 EXTRA_DIST = templ.c templ.h
