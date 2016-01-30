@@ -1,4 +1,4 @@
-SUBDIRS = data intl man po src
+SUBDIRS = data man po src
 
 MAINTAINERCLEANFILES = ABOUT-NLS INSTALL Makefile.in aclocal.m4 config.guess \
 		     config.h.in config.sub configure install-sh ltconfig \
@@ -7,7 +7,7 @@ MAINTAINERCLEANFILES = ABOUT-NLS INSTALL Makefile.in aclocal.m4 config.guess \
 docdir = $(datadir)/doc/lpe
 doc_DATA = AUTHORS BUGS COPYING CUSTOMIZE IDEAS MODES NEWS README TODO
 
-EXTRA_DIST = $(doc_DATA) autogen.sh
+EXTRA_DIST = config.rpath m4/ChangeLog  $(doc_DATA) autogen.sh
 
 dist-hook:
 	chmod -R go-w $(distdir)
@@ -40,3 +40,6 @@ cvs-dist: dist
 	fi
 	GZIP=$(GZIP_ENV) $(TAR) chozf $(PACKAGE)-$(VERSION)CVS.tar.gz $(PACKAGE)-$(VERSION)CVS
 	rm -rf $(PACKAGE)-$(VERSION)CVS
+
+ACLOCAL_AMFLAGS = -I m4
+AM_GNU_GETTEXT([external])

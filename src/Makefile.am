@@ -23,14 +23,14 @@ lpe_SOURCES = \
 	strfuncs.c strfuncs.h \
 	common.c common.h
 
-INCLUDES = -DDATADIR=\"$(datadir)\"
+INCLUDES = -DDATADIR=\"$(datadir)/lpe\"
 
-lpe_LDADD = @INTLLIBS@ @INTLOBJS@ @DL_LIB@ @SLANG_LIB@ -lncurses
+lpe_LDADD = @LIBINTL@ @INTLOBJS@ @DL_LIB@ @SLANG_LIB@ -lncurses
 lpe_LDFLAGS = @lpe_LDFLAGS@
 lpe_DEPENDENCIES = @lpe_DEPS@ @INTLOBJS@
 
 if USE_INCLUDED_LIBINTL
-AM_CPPFLAGS = -DLOCALEDIR=\"$(datadir)/@DATADIRNAME@\" -I$(top_srcdir)/intl
+AM_CPPFLAGS = -DLOCALEDIR=\"$(datadir)/lpe" -I$(top_srcdir)/intl
 else
 AM_CPPFLAGS = -DLOCALEDIR=\"$(datadir)/locale\"
 endif

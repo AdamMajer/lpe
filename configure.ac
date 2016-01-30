@@ -2,8 +2,10 @@ dnl Process this file with autoconf to produce a configure script.
 AC_INIT(src/lpe.c)
 AM_INIT_AUTOMAKE(lpe,1.2.6)
 AM_CONFIG_HEADER(config.h)
+AC_CONFIG_MACRO_DIR([m4])
 
 AM_MAINTAINER_MODE
+AC_USE_SYSTEM_EXTENSIONS
 
 dnl Checks for programs.
 AC_PROG_CC
@@ -160,7 +162,6 @@ AC_CHECK_FUNCS(strcspn strerror strstr strtol flock scandir strncasecmp)
 AC_OUTPUT([
 Makefile
 data/Makefile
-intl/Makefile
 man/Makefile
 po/Makefile.in
 src/Makefile
