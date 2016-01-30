@@ -19,7 +19,7 @@
 
 #include <unistd.h>
 
-#include SLANG_H
+#include <slang.h>
 
 static int
 i_lpe_exists (char *filename)

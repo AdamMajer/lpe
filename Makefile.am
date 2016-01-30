@@ -42,4 +42,3 @@ cvs-dist: dist
 	rm -rf $(PACKAGE)-$(VERSION)CVS
 
 ACLOCAL_AMFLAGS = -I m4
-AM_GNU_GETTEXT([external])

@@ -7,7 +7,7 @@
  */
 
 #include "options.h"
-#include SLANG_H
+#include <slang.h>
 #include <stdlib.h>
 #include "lpecomm.h"
 #include "cfg.h"

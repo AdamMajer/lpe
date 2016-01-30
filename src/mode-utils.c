@@ -19,7 +19,7 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
-#include SLANG_H
+#include <slang.h>
 
 static int _mode_util_accept_one (char *line, char *mode);
 

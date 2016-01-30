@@ -9,7 +9,7 @@
 #ifndef LPE_INPUT_H
 #define LPE_INPUT_H
 
-#include SLANG_H
+#include <slang.h>
 #include "buffer.h"
 
 /* Constants to represent operations that can be bound to various keys */

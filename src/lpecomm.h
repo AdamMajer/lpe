@@ -11,7 +11,7 @@
 
 #include "options.h"
 #include <string.h>
-#include SLANG_H
+#include <slang.h>
 
 /* forward decls */
 struct _buffer;

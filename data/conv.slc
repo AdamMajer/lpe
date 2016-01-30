@@ -1,5 +1,5 @@
-.#,*ü! 6 % color+ýü! 89 global.background.default % colorþ . lpe_set_optionü! 6y+ lpe_set_bkg,*ü" 11 " id % color+ýü" 13- global.color. " id9 % colorþ . lpe_set_optionü" 11y- lpe_set_color,*ü" 16 # str+ýü" 187 global.general.eof_fill # strþ
- . lpe_set_optionü" 16y0 lpe_set_eof_fill,*ü" 21 % width+ýü" 23= global.general.hard_tab_width % widthþ . lpe_set_optionü" 21y6 lpe_set_hard_tab_width,*ü" 26 % width+ýü" 28= global.general.soft_tab_width % widthþ . lpe_set_optionü" 26
-y6 lpe_set_soft_tab_width,*ü" 31 & option+*ü" 33 " fp % fname ! v+ýü" 35$ HOMEþ & getenv $ NULLA.w/cýü" 38$ HOMEþ & getenv, /.lpe/custom9°% fnameýýü" 39$ HOMEþ & getenv% /.lpe9# 493þ % mkdirýü" 50 % fname" a+þ % fopen°" fpü" 51 " fp $ NULLA.ý
-ü" 53 & stderr6 %s could not be opened % fnameþ ' fprintfw/cýü" 57 " fp$O \n%% Automatically written by lpe_save_option\nþ ' fprintfýü" 58 " fp$' %% %s\n $ timeþ ' fprintfýü" 60 " fp$@ lpe_set_option ( "%s", "%s" );\n & optioný & optionþ
- 5 _lpe_cfg_core_get_strþ ' fprintfýü" 62 " fpþ & fcloseü" 31y/ lpe_save_option
+.#,*ü! 6 % color+ýü! 89 global.background.default % colorþ . lpe_set_optionü! 6y+ lpe_set_bkg,*ü" 11 " id % color+ýü" 13- global.color. " id9 % colorþ . lpe_set_optionü" 11y- lpe_set_color,*ü" 16 # str+ýü" 187 global.general.eof_fill # strþ . lpe_se
+t_optionü" 16y0 lpe_set_eof_fill,*ü" 21 % width+ýü" 23= global.general.hard_tab_width % widthþ . lpe_set_optionü" 21y6 lpe_set_hard_tab_width,*ü" 26 % width+ýü" 28= global.general.soft_tab_width % widthþ . lpe_set_optionü" 26y6 lpe_set_soft_tab_width,
+*ü" 31 & option+*ü" 33 " fp % fname ! v+ýü" 35$ HOMEþ & getenv $ NULLA.w/cýü" 38$ HOMEþ & getenv, /.lpe/custom9°% fnameýýü" 39$ HOMEþ & getenv% /.lpe9# 493þ % mkdirýü" 50 % fname" a+þ % fopen°" fpü" 51 " fp $ NULLA.ýü" 53 & stderr6 %s could not b
+e opened % fnameþ ' fprintfw/cýü" 57 " fp$O \n%% Automatically written by lpe_save_option\nþ ' fprintfýü" 58 " fp$' %% %s\n $ timeþ ' fprintfýü" 60 " fp$@ lpe_set_option ( "%s", "%s" );\n & optioný & optionþ 5 _lpe_cfg_core_get_strþ ' fprintfýü" 62 " fpþ 
+& fcloseü" 31y/ lpe_save_option

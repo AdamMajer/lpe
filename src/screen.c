@@ -14,7 +14,7 @@
 #include <errno.h>
 #include <sys/ioctl.h>
 #include <ctype.h>
-#include SLANG_H
+#include <slang.h>
 #include <curses.h>
 #include <term.h>
 

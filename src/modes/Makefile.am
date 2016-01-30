@@ -1,6 +1,6 @@
 MAINTAINERCLEANFILES = Makefile.in
 
-INCLUDES = -I$(top_srcdir)/src
+AM_CFLAGS = -I$(top_srcdir)/src
 
 liblpedir = $(libdir)/lpe
 

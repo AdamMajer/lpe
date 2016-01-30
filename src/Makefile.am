@@ -23,7 +23,7 @@ lpe_SOURCES = \
 	strfuncs.c strfuncs.h \
 	common.c common.h
 
-INCLUDES = -DDATADIR=\"$(datadir)/lpe\"
+AM_CFLAGS = -DDATADIR=\"$(datadir)/lpe\"
 
 lpe_LDADD = @LIBINTL@ @INTLOBJS@ @DL_LIB@ @SLANG_LIB@ -lncurses
 lpe_LDFLAGS = @lpe_LDFLAGS@

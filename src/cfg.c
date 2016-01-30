@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#include SLANG_H
+#include <slang.h>
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif

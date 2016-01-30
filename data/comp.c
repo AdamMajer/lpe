@@ -1,5 +1,5 @@
 #include <config.h>
-#include SLANG_H
+#include <slang.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

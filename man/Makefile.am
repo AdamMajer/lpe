@@ -15,7 +15,7 @@ EXTRA_DIST = $(EXTRA_MANPAGES) lpe.1.en
 
 install-data-hook:
 	for m in $(EXTRA_MANPAGES); do \
-		$(mkinstalldirs) $(mandir)/`echo $$m | sed -e "s,^.*\.1\.\(.*\)$$,\1/man1,"`; \
+		$(mkinstalldirs) $(DESTDIR)/$(mandir)/`echo $$m | sed -e "s,^.*\.1\.\(.*\)$$,\1/man1,"`; \
 		$(INSTALL_DATA) $(top_srcdir)/man/$$m \
-			$(mandir)/`echo $$m | sed -e "s,^\(.*\)\.1\.\(.*\)$$,\2/man1/\1.1,"`; \
+			$(DESTDIR)/$(mandir)/`echo $$m | sed -e "s,^\(.*\)\.1\.\(.*\)$$,\2/man1/\1.1,"`; \
 	done

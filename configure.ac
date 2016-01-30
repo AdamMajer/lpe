@@ -1,8 +1,9 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(src/lpe.c)
-AM_INIT_AUTOMAKE(lpe,1.2.6)
+AC_INIT([Lpe], [1.2.7])
+AC_CONFIG_SRCDIR([src/lpe.c])
 AM_CONFIG_HEADER(config.h)
 AC_CONFIG_MACRO_DIR([m4])
+AM_INIT_AUTOMAKE
 
 AM_MAINTAINER_MODE
 AC_USE_SYSTEM_EXTENSIONS
@@ -17,6 +18,7 @@ AC_PROG_MAKE_SET
 dnl GNU gettext
 ALL_LINGUAS="bg cs de es fr pl ru hu"
 AM_GNU_GETTEXT
+AM_GNU_GETTEXT_VERSION(0.19.7)
 
 if test "$USE_INCLUDED_LIBINTL" = "no" && test "$USE_NLS" = "yes"
 then
@@ -144,12 +146,7 @@ AC_HEADER_STDC
 AC_HEADER_SYS_WAIT
 AC_CHECK_HEADERS(limits.h sys/syslimits.h sys/file.h sys/ioctl.h unistd.h)
 AC_CHECK_HEADERS(fcntl.h)
-AC_CHECK_HEADER(slang.h,
- [AC_DEFINE([HAVE_SLANG_H], 1, [Define 1 if <slang.h> exists]), SLANG_H=slang.h],
- [AC_CHECK_HEADER(slang/slang.h,
-  [AC_DEFINE([HAVE_SLANG_H], 1, [Define 1 if <slang.h> exists]), SLANG_H=slang/slang.h],
-  [AC_MSG_ERROR([slang.h is needed to compile $PACKAGE])])])
-AC_DEFINE_UNQUOTED(SLANG_H,"${SLANG_H}")
+AC_CHECK_HEADER([slang.h], [], [AC_MSG_ERROR([slang.h is required])])
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
