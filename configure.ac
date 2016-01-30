@@ -145,9 +145,9 @@ AC_HEADER_SYS_WAIT
 AC_CHECK_HEADERS(limits.h sys/syslimits.h sys/file.h sys/ioctl.h unistd.h)
 AC_CHECK_HEADERS(fcntl.h)
 AC_CHECK_HEADER(slang.h,
- [SLANG_H=slang.h],
+ [AC_DEFINE([HAVE_SLANG_H], 1, [Define 1 if <slang.h> exists]), SLANG_H=slang.h],
  [AC_CHECK_HEADER(slang/slang.h,
-  [SLANG_H=slang/slang.h],
+  [AC_DEFINE([HAVE_SLANG_H], 1, [Define 1 if <slang.h> exists]), SLANG_H=slang/slang.h],
   [AC_MSG_ERROR([slang.h is needed to compile $PACKAGE])])])
 AC_DEFINE_UNQUOTED(SLANG_H,"${SLANG_H}")
 
