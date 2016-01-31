@@ -1,1 +1,71 @@
+Original author
+---------------
+
 Chris Smith  <cd_smith@ou.edu>
+
+Additional credits
+------------------
+
+Eckehard Berns <eb@berns.i-s-o.net>
+    - Auto-indentation feature
+    - German translation
+    - Perl and SGML language modules
+    - Various assorted suggestions
+    - Autoconf feature
+
+Gergely Nagy <algernon@debian.org>
+    - Config file
+    - LISP language module
+    - Hungarian translation
+    - Makefile.am and configure.in hacks
+    - various patches here and there
+
+Brandon Stepler <stepler@naples.net>
+    - Multiple buffer support
+
+Vladimir Popov <mashgrad@elist.ru>
+    - version option on start
+    - various bug reports, lots of other help and suggestions
+    - Russian translation
+
+Danial Koepke <dkoepke@california.com>
+    - Home goes to non-whitespace char
+    - cmode extended mode_indent
+
+Boris Wedl <boris.wedl@kfunigraz.ac.at>
+    - Minibuf tab completion
+
+Stanislav Grozev <tacho@orbitel.bg>
+    - OpenBSD port and bug reports
+    - Bulgarian translation
+
+Jim Foltz <aa204@acorn.net>
+    - Find next command
+    - Bug reports
+
+Graeme Cross <gcross@netspace.net.au>
+    - FreeBSD port, fix for RedHat 5.2 build
+
+Ron S. <phaeton@clubi.net>
+    - Solaris port
+
+Eric Crampton <crames@aur.alcatel.com>
+    - WinNT port
+
+Manuel Cornes <manuel.cornes@lipha.fr>
+    - French translation
+
+Piotr Klaban <makler@man.torun.pl>
+    - Polish translation
+
+Michal Safranek <wayne@linuxfreak.com>
+    - Czech translation
+
+Paco Brufal <pbrufal@phucksys.dhis.org>
+    - Spanish translation
+
+Dzogchen Community <b@scil.npi.msu.su>
+    - bug fix for Makefile
+
+Kevin Miller <sar@403forbidden.net>
+    - Suggestions on syntax highlighting for C
