@@ -18,7 +18,6 @@ AC_PROG_MAKE_SET
 dnl GNU gettext
 ALL_LINGUAS="bg cs de es fr pl ru hu"
 AM_GNU_GETTEXT
-AM_GNU_GETTEXT_VERSION(0.19.7)
 
 if test "$USE_INCLUDED_LIBINTL" = "no" && test "$USE_NLS" = "yes"
 then

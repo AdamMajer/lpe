@@ -17926,7 +17926,6 @@ $as_echo "#define HAVE_DCGETTEXT 1" >>confdefs.h
 
 
 
-
 if test "$USE_INCLUDED_LIBINTL" = "no" && test "$USE_NLS" = "yes"
 then
   if ! test "$gt_cv_func_gettext_libc" = "yes"
