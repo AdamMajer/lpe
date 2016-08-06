@@ -117,6 +117,9 @@ AC_MSG_ERROR([no slang library found.  $PACKAGE depends on SLang.])
 ,-ltermcap])])
 AC_SUBST(SLANG_LIB)
 
+AC_CHECK_LIB(ncurses, beep, [NCURSES_LIB="-lncurses"],[AC_MSG_ERROR([no ncurses library found.])])
+AC_SUBST(NCURSES_LIB)
+
 dnl Checks for linked in modes (not functional at the moment)
 lpe_LDFLAGS=""
 if test "$enable_static" = "yes" && test "$enable_shared" = "no"
