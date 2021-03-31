@@ -38,6 +38,6 @@
 /*
  * Other things that are used in some places...
  */
-char *LPE_CONFIG_FILE;
+extern char *LPE_CONFIG_FILE;
 
 #endif /* LPE_OPTIONS_H */

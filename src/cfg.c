@@ -22,6 +22,7 @@
 #include <string.h>
 #endif
 
+extern char *LPE_CONFIG_FILE;
 int cfg_errno;
 
 void

@@ -25,6 +25,7 @@
 #include "strfuncs.h"
 #include "exports.h"
 
+char *LPE_CONFIG_FILE;
 /* A flag indicating a desire to quit the editor.  This is set whenever a
  * command should cause an exit.
  */
